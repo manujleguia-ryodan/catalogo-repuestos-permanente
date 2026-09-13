@@ -1,0 +1,19 @@
+{
+  "_comentario": "Fotos verificadas a mano por N/P. Solo se usan cuando la columna IMAGEN_URL de la hoja viene vacía: si la hoja trae una URL, esa manda siempre. Para quitar una foto de aquí, borra su línea.",
+  "imagenes": {
+    "336-6684": "https://storage.googleapis.com/runable-templates/cli-uploads%2F8RldMm77drsr5iq7Z7zfDLbnXetdOCZ4%2FvI0Uht19whTUqPBLoAaCO%2F336-6684.jpg",
+    "343-4465": "https://storage.googleapis.com/runable-templates/cli-uploads%2F8RldMm77drsr5iq7Z7zfDLbnXetdOCZ4%2FG-V64G7x7E5iyDkJ1cOXO%2F343-4465.jpg",
+    "344-0078": "https://storage.googleapis.com/runable-templates/cli-uploads%2F8RldMm77drsr5iq7Z7zfDLbnXetdOCZ4%2Fdc_fVLNon2cgUy1lkmDJO%2F344-0078.jpg",
+    "331-3505": "https://storage.googleapis.com/runable-templates/cli-uploads%2F8RldMm77drsr5iq7Z7zfDLbnXetdOCZ4%2FoTUfx-mzbI2bI5TFuKgaQ%2F331-3505.jpg",
+    "329-5946": "https://storage.googleapis.com/runable-templates/cli-uploads%2F8RldMm77drsr5iq7Z7zfDLbnXetdOCZ4%2F1tBALVkz1wIsj4qWLBJsT%2F329-5946.jpg",
+    "472-0825": "https://storage.googleapis.com/runable-templates/cli-uploads%2F8RldMm77drsr5iq7Z7zfDLbnXetdOCZ4%2FEkPgHIoeTwEdohHbKX63G%2F472-0825.jpg",
+    "473-3816": "https://storage.googleapis.com/runable-templates/cli-uploads%2F8RldMm77drsr5iq7Z7zfDLbnXetdOCZ4%2F5rsFf1G5VH5VGqcRzFt_r%2F473-3816.jpg",
+    "213-9100": "https://storage.googleapis.com/runable-templates/cli-uploads%2F8RldMm77drsr5iq7Z7zfDLbnXetdOCZ4%2FmSniPngBNVgOBtxD80Amq%2F213-9100.jpg",
+    "494-0424": "https://storage.googleapis.com/runable-templates/cli-uploads%2F8RldMm77drsr5iq7Z7zfDLbnXetdOCZ4%2FpgztkH2PYUJtCiZERQ87u%2F494-0424.jpg",
+    "320-0562": "https://storage.googleapis.com/runable-templates/cli-uploads%2F8RldMm77drsr5iq7Z7zfDLbnXetdOCZ4%2FQ3OSZh4BGSvCgL6Z2YKG4%2F320-0562.jpg",
+    "571-0488": "https://storage.googleapis.com/runable-templates/cli-uploads%2F8RldMm77drsr5iq7Z7zfDLbnXetdOCZ4%2F3JKaFtyjT0Bvx3gROF6vc%2F571-0488.jpg",
+    "437-0125": "https://storage.googleapis.com/runable-templates/cli-uploads%2F8RldMm77drsr5iq7Z7zfDLbnXetdOCZ4%2FTihn7h3NQnErAtbseHFyz%2F437-0125.jpg",
+    "139-8930": "https://storage.googleapis.com/runable-templates/cli-uploads%2F8RldMm77drsr5iq7Z7zfDLbnXetdOCZ4%2Ftc_jcAi6_6e_5PCoFN9ri%2F139-8930.jpg",
+    "275-2604": "https://storage.googleapis.com/runable-templates/cli-uploads%2F8RldMm77drsr5iq7Z7zfDLbnXetdOCZ4%2F5HMgdK6XV3o9WmEyYAAAT%2F275-2604.jpg"
+  }
+}

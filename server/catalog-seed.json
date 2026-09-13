@@ -1,0 +1,1662 @@
+{
+  "rows": [
+    {
+      "equipo": "793D",
+      "np": "153-5720",
+      "descripcion": "BATERÍA",
+      "sap": "3002920",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "CONSUMIBLE",
+      "np": "177-9343",
+      "descripcion": "VAMPIROS DE MUESTRA",
+      "sap": "3027668",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "205-4179",
+      "descripcion": "GRILLETE TOLVA",
+      "sap": "3005227",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "251-7176",
+      "descripcion": "CAJA DE BLOQUEO DE TX",
+      "sap": "3007141",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "269-5346",
+      "descripcion": "INYECTORES DE GRASA 2",
+      "sap": "3007722",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "269-5348",
+      "descripcion": "INYECTORES DE GRASA 3",
+      "sap": "370347",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "269-5352",
+      "descripcion": "INYECTORES DE GRASA 4",
+      "sap": "361960",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "283-0658",
+      "descripcion": "CABLE DE CAMARA 7.5 M",
+      "sap": "3008272",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "307-3245",
+      "descripcion": "INYECTORES DE GRASA 3",
+      "sap": "355954",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "311-7059",
+      "descripcion": "ESPEJO IZQUIERDO",
+      "sap": "3009581",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "144-2227",
+      "descripcion": "ESPEJO DERECHO PEQUEÑO",
+      "sap": "352120",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "334-8049",
+      "descripcion": "FARO DE PARQUEO",
+      "sap": "3085138",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "334-5409",
+      "descripcion": "FARO INTERMITENTE",
+      "sap": "3010513",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "336-6684",
+      "descripcion": "CÁMARA",
+      "sap": "3010691",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "343-4465",
+      "descripcion": "FILTRO DE DIFERENCIAL CAT",
+      "sap": "351803",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "347-0801",
+      "descripcion": "SWITCH LUZ DE RETROCESO",
+      "sap": "3011395",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "353-4515",
+      "descripcion": "INTERRUPTOR DE BLOQUEO DE TX",
+      "sap": "370316",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "419-3911",
+      "descripcion": "LED DE BLOQUEO NARANJA",
+      "sap": "3016899",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "369-4098",
+      "descripcion": "MASTER SWITCH",
+      "sap": "3013330",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "374-8497",
+      "descripcion": "FAJA DE ALTERNADOR",
+      "sap": "3013898",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "6B-8085",
+      "descripcion": "GANCHO DE CAMBIO DE GUARDIA",
+      "sap": "3022722",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "6v-5048",
+      "descripcion": "SELLO DE VÁLVULA DE MUESTREO MOTOR",
+      "sap": "357319",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "8c-3445",
+      "descripcion": "TAPA ANTIPOLVO DE MUESTREO MOTOR",
+      "sap": "348314",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "8c-3446",
+      "descripcion": "VÁLVULA DE MUESTREO",
+      "sap": "363416",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "441-0314",
+      "descripcion": "FAROS DE TRABAJO Y RETROCESO",
+      "sap": "3018571",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "441-0315",
+      "descripcion": "FAROS DE ALTA",
+      "sap": "3018572",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "539-5525",
+      "descripcion": "FARO DE CAMARA ,ESCALERA Y PLATAFORMA",
+      "sap": "3068697",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "3072338",
+      "descripcion": "FARO ANTIEBLA HELLA",
+      "sap": "3072338",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "3039238",
+      "descripcion": "FARO DE BERMA NORDICLIGHTS",
+      "sap": "3039238",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "236-4630",
+      "descripcion": "INTERRUPTOR DE ESPEJO CALEFACTABLE",
+      "sap": "3006334",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "158-6634",
+      "descripcion": "SWITCH SHUTDOWN",
+      "sap": "354718",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "6V-1392",
+      "descripcion": "SELLO DE PUERTAS PLANO",
+      "sap": "3023253",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "6V-7419",
+      "descripcion": "LIMPIAPARABRISAS",
+      "sap": "351773",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "8W-3405",
+      "descripcion": "ROTOCHAMBER",
+      "sap": "3025565",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "325-6487",
+      "descripcion": "MANGUERA AZUL REFRIGERANTE",
+      "sap": "3010098",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "230-3671",
+      "descripcion": "ABRAZADERA DE MANGUERA AZUL",
+      "sap": "3006042",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "450-4946",
+      "descripcion": "MICA AMARILLA",
+      "sap": "3066547",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "277-3431",
+      "descripcion": "ESPEJO DE ESCALERA",
+      "sap": "3008021",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "217-4184",
+      "descripcion": "ELECTROVALVULA SECADOR",
+      "sap": "3005596",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "16M3",
+      "np": "P502022",
+      "descripcion": "ELEMENTO FILTRO DE COMBUSTIBLE (CAT 500-0480)",
+      "sap": "2560862",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "16M3",
+      "np": "P532509",
+      "descripcion": "ELEMENTO FILTRO DE AIRE PRIMARIO (CAT 6I-2509)",
+      "sap": "2560839",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "16M3",
+      "np": "P532510",
+      "descripcion": "(CAT 6I-2510)",
+      "sap": "2560841",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "16M3",
+      "np": "P569614",
+      "descripcion": "(CAT 338-3540)",
+      "sap": "2560843",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "16M3",
+      "np": "P573354",
+      "descripcion": "(CAT 328-3655)",
+      "sap": "2560840",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "16M3",
+      "np": "P609447",
+      "descripcion": "ELEMENTO FILTRO DE AIRE DE CABINA (CAT 149-1912)",
+      "sap": "2560858",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "16M3",
+      "np": "P637257",
+      "descripcion": "FILTRO DE RECIRCULACIÓN DE CABINA (CAT 211-2660)",
+      "sap": "2560842",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "374FL",
+      "np": "DBF5810",
+      "descripcion": "FILTRO DE COMBUSTIBLE ULTRA ALTA EFICIENCIA (CAT 422-7587)",
+      "sap": "2560834",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "374FL",
+      "np": "P170311",
+      "descripcion": "FILTRO DE ACEITE ALTA EFICIENCIA (CAT 185-0337)",
+      "sap": "2560836",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "374FL",
+      "np": "P501108",
+      "descripcion": "FILTRO SEPARADOR DE AGUA Y COMBUSTIBLE (CAT 438-5386)",
+      "sap": "2560832",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "374FL",
+      "np": "P550388",
+      "descripcion": "FILTRO DE ACEITE ALTA EFICIENCIA (CAT 4T-6788)",
+      "sap": "2560838",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "374FL",
+      "np": "P551808",
+      "descripcion": "FILTRO DE ACEITE DE MOTOR AVANZADO (CAT 1R-1808)",
+      "sap": "2559800",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "374FL",
+      "np": "P571271",
+      "descripcion": "ELEMENTO FILTRO DE ACEITE AVANZADO (CAT 179-9806)",
+      "sap": "2560835",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "374FL",
+      "np": "P958208",
+      "descripcion": "ELEMENTO FILTRO DE AIRE PRIMARIO (CAT 375-4301)",
+      "sap": "2560833",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "374FL",
+      "np": "P958209",
+      "descripcion": "ELEMENTO FILTRO DE AIRE SECUNDARIO (CAT 375-4302)",
+      "sap": "2560837",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "777G",
+      "np": "C045001",
+      "descripcion": "ELEMENTO FILTRO DE ACEITE DE FRENO (CAT 8X-4575)",
+      "sap": "2560825",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "777G",
+      "np": "P165877",
+      "descripcion": "FILTRO DE ACEITE ALTA EFICIENCIA (CAT 9T-8578)",
+      "sap": "2560826",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "777G",
+      "np": "P170308",
+      "descripcion": "FILTRO DE ACEITE ULTRA ALTA EFICIENCIA (CAT 126-1813)",
+      "sap": "2560824",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "777G",
+      "np": "P536429",
+      "descripcion": "ELEMENTO FILTRO DE AIRE DE CABINA ESTÁNDAR (CAT 107-0266)",
+      "sap": "2560857",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "777G",
+      "np": "P551110",
+      "descripcion": "FILTRO SEPARADOR DE AGUA Y COMBUSTIBLE (CAT 326-1643)",
+      "sap": "2560856",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "777G",
+      "np": "P551316",
+      "descripcion": "FILTRO DE COMBUSTIBLE ALTA EFICIENCIA (CAT 1R-0755)",
+      "sap": "2560855",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "777G",
+      "np": "P551808",
+      "descripcion": "FILTRO DE ACEITE DE MOTOR AVANZADO (CAT 1R-1808)",
+      "sap": "2559800",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "777G",
+      "np": "P573112",
+      "descripcion": "ELEMENTO FILTRO DE ACEITE DE FRENO (CAT 293-3645)",
+      "sap": "2560823",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "777G",
+      "np": "P580903",
+      "descripcion": "ELEMENTO FILTRO DE ACEITE DE TRANSMISIÓN (CAT 337-5270)",
+      "sap": "2560863",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "777G",
+      "np": "P609447",
+      "descripcion": "ELEMENTO FILTRO DE AIRE DE CABINA (CAT 149-1912)",
+      "sap": "2560858",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "777G",
+      "np": "P638609",
+      "descripcion": "ELEMENTO FILTRO DE AIRE SECUNDARIO (CAT 333-1189)",
+      "sap": "2560854",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "777G",
+      "np": "577-1437",
+      "descripcion": "ELEMENTO FILTRO DE AIRE PRIMARIO",
+      "sap": "3064407",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "DBA7038",
+      "descripcion": "ELEMENTO FILTRO DE AIRE PRIMARIO (CAT 251-5885)",
+      "sap": "3063125",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "P115070",
+      "descripcion": "ELEMENTO FILTRO DE AIRE SECUNDARIO (CAT 9Y-7663)",
+      "sap": "3063126",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "P165332",
+      "descripcion": "FILTRO EXTERIOR DE TANQUE DE DIRECCION(CAT 465-6504",
+      "sap": "2560828",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "P536429",
+      "descripcion": "ELEMENTO FILTRO DE AIRE DE CABINA ESTÁNDAR (CAT 107-0266)",
+      "sap": "2560857",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "P550925",
+      "descripcion": "FILTRO INTERNO DE TANQUE DE DIRECCION(CAT 249-2337)",
+      "sap": "2560827",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "P551316",
+      "descripcion": "FILTRO DE COMBUSTIBLE ALTA EFICIENCIA (CAT 1R-0755)",
+      "sap": "2560855",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "P551808",
+      "descripcion": "FILTRO DE ACEITE DE MOTOR AVANZADO (CAT 1R-1808)",
+      "sap": "2559800",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "P573299",
+      "descripcion": "ELEMENTO FILTRO DE ACEITE AVANZADO (CAT 343-4464)",
+      "sap": "2560830",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "P573300",
+      "descripcion": "ELEMENTO FILTRO DE ACEITE AVANZADO (CAT 343-4465)",
+      "sap": "2560859",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "P618642",
+      "descripcion": "ELEMENTO FILTRO DE AIRE DE CABINA ESTÁNDAR (CAT 119-3355)",
+      "sap": "2560829",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "834K",
+      "np": "P502022",
+      "descripcion": "ELEMENTO FILTRO DE COMBUSTIBLE (CAT 500-0480)",
+      "sap": "2560862",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "834K",
+      "np": "P551110",
+      "descripcion": "FILTRO SEPARADOR DE AGUA Y COMBUSTIBLE (CAT 326-1643)",
+      "sap": "2560856",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "834K",
+      "np": "P551311",
+      "descripcion": "FILTRO DE COMBUSTIBLE ALTA EFICIENCIA (CAT 1R-0749)",
+      "sap": "2560851",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "834K",
+      "np": "P551808",
+      "descripcion": "FILTRO DE ACEITE DE MOTOR AVANZADO (CAT 1R-1808)",
+      "sap": "2559800",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "834K",
+      "np": "P573301",
+      "descripcion": "FILTRO DE ACEITE HIDRAULICO (CAT 222-6713)",
+      "sap": "2560861",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "834K",
+      "np": "P582209",
+      "descripcion": "ELEMENTO FILTRO DE ACEITE (CAT 295-6257)",
+      "sap": "2560850",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "834K",
+      "np": "P638609",
+      "descripcion": "ELEMENTO FILTRO DE AIRE SECUNDARIO (CAT 333-1189)",
+      "sap": "2560854",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "834K",
+      "np": "577-1437",
+      "descripcion": "ELEMENTO FILTRO DE AIRE PRIMARIO",
+      "sap": "2560853",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "994K",
+      "np": "DBB0248",
+      "descripcion": "ELEMENTO FILTRO SEPARADOR DE AGUA (CAT P570248)",
+      "sap": "3043246",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "994K",
+      "np": "DBB8665",
+      "descripcion": "ELEMENTO FILTRANTE 7 MICR (CAT P568665)",
+      "sap": "3043247",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "994K",
+      "np": "P536429",
+      "descripcion": "ELEMENTO FILTRO DE AIRE DE CABINA ESTÁNDAR (CAT 107-0266)",
+      "sap": "2560857",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "994K",
+      "np": "P550921",
+      "descripcion": "ELEMENTO FILTRO DE ACEITE ULTRA (CAT 139-1537)",
+      "sap": "2560860",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "994K",
+      "np": "P551110",
+      "descripcion": "FILTRO SEPARADOR DE AGUA Y COMBUSTIBLE (CAT 326-1643)",
+      "sap": "2560856",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "994K",
+      "np": "P573301",
+      "descripcion": "FILTRO DE ACEITE (CAT 222-6713)",
+      "sap": "2560861",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "994K",
+      "np": "P581027",
+      "descripcion": "ELEMENTO FILTRO DE ACEITE ULTRA (CAT 243-3758)",
+      "sap": "2560831",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "994K",
+      "np": "P638609",
+      "descripcion": "ELEMENTO FILTRO DE AIRE SECUNDARIO (CAT 333-1189)",
+      "sap": "2560854",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "994K",
+      "np": "577-1437",
+      "descripcion": "ELEMENTO FILTRO DE AIRE PRIMARIO",
+      "sap": "2560853",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "D10T2",
+      "np": "P165354",
+      "descripcion": "FILTRO DE ACEITE ULTRA ALTA EFICIENCIA (CAT 126-1815)",
+      "sap": "2560848",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "D10T2",
+      "np": "P179343",
+      "descripcion": "FILTRO DE ACEITE ULTRA ALTA EFICIENCIA (CAT 465-6506)",
+      "sap": "2560847",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "D10T2",
+      "np": "P532505",
+      "descripcion": "ELEMENTO FILTRO DE AIRE PRIMARIO (CAT 6I-2505)",
+      "sap": "2560845",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "D10T2",
+      "np": "P532506",
+      "descripcion": "ELEMENTO FILTRO DE AIRE SECUNDARIO (CAT 6I-2506)",
+      "sap": "2560844",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "D10T2",
+      "np": "P550921",
+      "descripcion": "ELEMENTO FILTRO DE ACEITE ULTRA (CAT 139-1537)",
+      "sap": "2560860",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "D10T2",
+      "np": "P551316",
+      "descripcion": "FILTRO DE COMBUSTIBLE ALTA EFICIENCIA (CAT 1R-0755)",
+      "sap": "2560855",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "D10T2",
+      "np": "P551808",
+      "descripcion": "FILTRO DE ACEITE DE MOTOR AVANZADO (CAT 1R-1808)",
+      "sap": "2559800",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "D10T2",
+      "np": "P637261",
+      "descripcion": "ELEMENTO FILTRO DE AIRE DE CABINA (CAT 346-8243)",
+      "sap": "2560849",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "D10T2",
+      "np": "P827653",
+      "descripcion": "ELEMENTO FILTRO DE AIRE PRIMARIO (CAT 231-0167)",
+      "sap": "2560846",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "PV271",
+      "np": "P551808",
+      "descripcion": "FILTRO DE ACEITE DE MOTOR AVANZADO (CAT 1R-1808)",
+      "sap": "2559800",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "D10T2",
+      "np": "344-0078",
+      "descripcion": "BOMBA LIMPIA PARABRISAS",
+      "sap": "3011135",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "COMUN",
+      "np": "2568625",
+      "descripcion": "PERTIGA",
+      "sap": "2568625",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "PV271",
+      "np": "2657250540",
+      "descripcion": "ROD SEAL 7 5/8",
+      "sap": "3032132",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "PRECORTE",
+      "np": "3222322073",
+      "descripcion": "ROD SEAL GASKET",
+      "sap": "3036513",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "PRECORTE",
+      "np": "3222316982",
+      "descripcion": "RUBBER SEAL",
+      "sap": "356862",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "COMUN",
+      "np": "2511584",
+      "descripcion": "R134A GAS A/C",
+      "sap": "2511584",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "COMUN",
+      "np": "2530790",
+      "descripcion": "RADIO MUSICAL",
+      "sap": "2530790",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "D10T2",
+      "np": "331-3505",
+      "descripcion": "PUNTA DE RIPPER 1 UN",
+      "sap": "3010358",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "834K",
+      "np": "329-5946",
+      "descripcion": "PROTECTO LATERAL PEQUEÑO (LAGARTO)",
+      "sap": "310295",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "834K",
+      "np": "329-5949",
+      "descripcion": "KIT PIN DE PROTECTOR LATERAL",
+      "sap": "3010296",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "994K",
+      "np": "329-5946",
+      "descripcion": "PROTECTO LATERAL PEQUEÑO (LAGARTO)",
+      "sap": "310295",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "994K",
+      "np": "329-5949",
+      "descripcion": "KIT PIN DE PROTECTOR LATERAL",
+      "sap": "3010296",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "16M3",
+      "np": "472-0825",
+      "descripcion": "PUNTA DE RIPPER 7 UN",
+      "sap": "3027661",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "16M3",
+      "np": "473-3816",
+      "descripcion": "PIN DE RIPPER 7 UN",
+      "sap": "3027662",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "419-7228",
+      "descripcion": "SENSOR DE VELOCIDAD DE RUEDA",
+      "sap": "3016950",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "213-9100",
+      "descripcion": "ALARMA DE RETROCESO",
+      "sap": "3005486",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "16M3",
+      "np": "494-0424",
+      "descripcion": "BOMBA DE ENGRASE",
+      "sap": "3020900",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "16M3",
+      "np": "8X-2321",
+      "descripcion": "VALVULA DE ALIVIO DE GRASA",
+      "sap": "3025640",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "8X-3046",
+      "descripcion": "SHIM DE TOLVA 2MM",
+      "sap": "3025669",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "COMUN",
+      "np": "8T-5400",
+      "descripcion": "CODO DE AGUA DE LIMPIARABRISAS CON TUERCA",
+      "sap": "371206",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "470-0214",
+      "descripcion": "PERNO DE SECADOR",
+      "sap": "3020076",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "994K",
+      "np": "544-0456",
+      "descripcion": "PUNTA DE CUCHARON 9 UN",
+      "sap": "3057256",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "SMART D65",
+      "np": "3222324325",
+      "descripcion": "COMPRESOR A/C",
+      "sap": "3059646",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "320-0562",
+      "descripcion": "SECADOR A/C",
+      "sap": "3009917",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "6F-4868",
+      "descripcion": "SELLO TAPON DE DRENAJE DE DIFERENCIAL",
+      "sap": "307560",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "441-3637",
+      "descripcion": "TIMER DE ESPEJO",
+      "sap": "3018575",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "COMUN",
+      "np": "297177",
+      "descripcion": "CIRCULINA NARANJA",
+      "sap": "297177",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "16M3",
+      "np": "253-4635",
+      "descripcion": "PLACA SUPERIOR DE BRONCE DE VERTEDERA",
+      "sap": "355154",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "16M3",
+      "np": "446-1523",
+      "descripcion": "BRONCE DE VERTEDERA",
+      "sap": "356716",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "16M3",
+      "np": "2G-2946",
+      "descripcion": "SHIM DE VERTEDERA",
+      "sap": "367554",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "16M3",
+      "np": "449-1750",
+      "descripcion": "TAPA LATERAL INFERIOR 4 UN",
+      "sap": "367556",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "16M3",
+      "np": "449-1751",
+      "descripcion": "TAPA LATERAL SUPERIOR 4 UN",
+      "sap": "367555",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "16M3",
+      "np": "8T-4223",
+      "descripcion": "ARANDELAS DE BRONCES DE VERTEDERA 24 UN",
+      "sap": "352771",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "16M3",
+      "np": "7X-0481",
+      "descripcion": "PERNOS DE BRONCES DE VERTEDERA 12 UN",
+      "sap": "360806",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "16M3",
+      "np": "9X-0941",
+      "descripcion": "TUERCA DE BRONCES DE VERTEDERA 12 UN",
+      "sap": "367557",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "777G",
+      "np": "306201",
+      "descripcion": "BOMBA DE REGADO DE AGUA (MEGA)",
+      "sap": "3045747",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "777G",
+      "np": "302080",
+      "descripcion": "MOTOR DE REGADO DE AGUA (MEGA)",
+      "sap": "3045751",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "777G",
+      "np": "301927",
+      "descripcion": "COUPLING DE MOTOR Y BOMBA DE REGADO DE AGUA (MEGA)",
+      "sap": "3045750",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "PV271",
+      "np": "2657939696",
+      "descripcion": "ENCODER",
+      "sap": "3027750",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "CONSUMIBLE",
+      "np": "125-7875",
+      "descripcion": "TERMOCONTRAIBLE 5/16 NEGRO",
+      "sap": "3001611",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "CONSUMIBLE",
+      "np": "8T-6342",
+      "descripcion": "TERMOCONTRAIBLE 1/8 TRANSPARENTE",
+      "sap": "3025376",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "777G",
+      "np": "4S-8598",
+      "descripcion": "REJILLA DE TRANSMISION CISTERNA",
+      "sap": "350125",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "COMUN",
+      "np": "307-3245",
+      "descripcion": "INYECTOR DE GRASA 1",
+      "sap": "355954",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "586-4465",
+      "descripcion": "PARABRISAS DELANTERO",
+      "sap": "3087661",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "PV271",
+      "np": "2657385270",
+      "descripcion": "MORDAZA O TONG 4 UN",
+      "sap": "3029603",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "638-6388",
+      "descripcion": "ESPEJO DERECHO GRANDE",
+      "sap": "3028296",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "PV271",
+      "np": "2658479211",
+      "descripcion": "CABLE DE BAQUELITA DE ROD SUPPORT 25 FT",
+      "sap": "3027705",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "PV271",
+      "np": "2657195307",
+      "descripcion": "BAQUELITA GUIA ANCHA ROD SUPPORT 2 UN",
+      "sap": "3027699",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "PV271",
+      "np": "2695928628",
+      "descripcion": "PERNO DE BRONCE LARGO ROD SUPPORT 10 UN",
+      "sap": "3027709",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "PV271",
+      "np": "2657195315",
+      "descripcion": "SHIM ANCHO ROD SUPPORT 6 UN",
+      "sap": "3027703",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "PV271",
+      "np": "2657195323",
+      "descripcion": "SHIM ANCHO ROD SUPPORT 2 UN",
+      "sap": "3027704",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "PV271",
+      "np": "2657195273",
+      "descripcion": "BAQUELITA GUIA DELGADA 4 UN",
+      "sap": "3027700",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "PV271",
+      "np": "2657195281",
+      "descripcion": "SHIM DELGADO ROD SUPPORT 8 UN",
+      "sap": "3027701",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "PV271",
+      "np": "2657195299",
+      "descripcion": "SHIM DELGADO ROD SUPPORT 4 UN",
+      "sap": "3027702",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "PV271",
+      "np": "2695934733",
+      "descripcion": "ARANDELA DE PRESION BAQUELITA ANCHA ROD SUPPORT 38 UN",
+      "sap": "3027717",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "PV271",
+      "np": "2695935003",
+      "descripcion": "ARANDELA PLANA, BAQUELITA DELGADA ROD SUPPORT 24 UN",
+      "sap": "3027718",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "PV271",
+      "np": "2695157731",
+      "descripcion": "PERNO DE BRONCE CORTO ROD SUPPORT 23 UN",
+      "sap": "3027707",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "CONSUMIBLE",
+      "np": "246-2841",
+      "descripcion": "RELAY 24 V",
+      "sap": "3012541",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "CONSUMIBLE",
+      "np": "230-9174",
+      "descripcion": "DISYUNTOR 15 AMP",
+      "sap": "369481",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "777G",
+      "np": "361-5976",
+      "descripcion": "VISOR DE NIVEL DE REFRIGERANTE",
+      "sap": "3012541",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "994K",
+      "np": "571-0488",
+      "descripcion": "TAPA DE RADIADOR",
+      "sap": "3084978",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "COMUN",
+      "np": "2525634",
+      "descripcion": "CIRCULINA VERDE",
+      "sap": "2525634",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "231-3869",
+      "descripcion": "PALANCA DE ACCIONAMIENTO DE TOLVA",
+      "sap": "3006134",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "266-1483",
+      "descripcion": "SENSOR DE PALANCA DE ACCIONAMIENTO DE TOLVA",
+      "sap": "3007611",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "437-0125",
+      "descripcion": "ALTERNADOR",
+      "sap": "3018335",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "6K-5741",
+      "descripcion": "VALVULA DE PURGA DE TANQUE DE AIRE PRINCIPAL",
+      "sap": "3023051",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "204-2281",
+      "descripcion": "PRECINTO GRUESO",
+      "sap": "366628",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "PV271",
+      "np": "2657341588",
+      "descripcion": "PIN SUPERIOR DE GATOS",
+      "sap": "3029607",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "139-2116",
+      "descripcion": "SWITCH BLOQUEO DE TX /LUZ DE ESCALERA NIVEL DE PISO",
+      "sap": "369480",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "139-2118",
+      "descripcion": "SWITCH LUZ DE MOTOR",
+      "sap": "3002273",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "189-0135",
+      "descripcion": "INTERRUPTOR DE LIMITE DE ESCALERA",
+      "sap": "3004274",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "382-4475",
+      "descripcion": "INTERRUPTOR DE BLOQUEO DE TX Y MOTOR",
+      "sap": "3014915",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "CONSUMIBLE",
+      "np": "3069861",
+      "descripcion": "PROTECTOR DE GOMA DE SWITCH",
+      "sap": "3069861",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "CONSUMIBLE",
+      "np": "317-3356",
+      "descripcion": "TERMINAL OJO 1/0",
+      "sap": "3009803",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "CONSUMIBLE",
+      "np": "030-1709",
+      "descripcion": "TERMINAL OJO 2/0",
+      "sap": "3000034",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "CONSUMIBLE",
+      "np": "274-9183",
+      "descripcion": "TERMINAL OJO 3/0",
+      "sap": "3007917",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "CONSUMIBLE",
+      "np": "2530805",
+      "descripcion": "DESENGRASANTE,DESIN B-15,55GAL",
+      "sap": "2530805",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "COMUN",
+      "np": "5P-8837",
+      "descripcion": "SEGURO DE TACOS DE RUEDA",
+      "sap": "3022536",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "8X-9874",
+      "descripcion": "CADENA DE CAMBIO DE GUARDIA",
+      "sap": "3025830",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "SMART D65",
+      "np": "3222324896",
+      "descripcion": "BLOWER DE 2 VENTILADORES A/C",
+      "sap": "3036457",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "SMART D65",
+      "np": "5541902100",
+      "descripcion": "BLOWER DE 1 VENTILADOR A/C",
+      "sap": "3028914",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "139-8930",
+      "descripcion": "BRAZO DE LIMPIAPARABRISAS",
+      "sap": "3002300",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "16M3",
+      "np": "373-4328",
+      "descripcion": "SENSOR DE POSICION DE ARTICULACION",
+      "sap": "3050096",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "D10T2",
+      "np": "370-1485",
+      "descripcion": "ALARMA DE RETROCESO",
+      "sap": "359192",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "SMART D65",
+      "np": "6060008042",
+      "descripcion": "FILTRO DE COMBUSTIBLE, SECUNDARIO (P551311)",
+      "sap": "3082969",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "SMART D65",
+      "np": "6060008045",
+      "descripcion": "FILTRO SEPARADOR DE AGUA (P550900)",
+      "sap": "3026853",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "539-6652",
+      "descripcion": "SENSOR DE POSICION DE TOLVA",
+      "sap": "3007613",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "3058331",
+      "descripcion": "BOMBA DE GRASA LINCOLN",
+      "sap": "3058331",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "324-0843",
+      "descripcion": "HARNESS DE ACTUAL GEAR",
+      "sap": "3057352",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "275-2604",
+      "descripcion": "FILTRO DE ACEITE DE MOTOR AVANZADO",
+      "sap": "338715",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "480-1157",
+      "descripcion": "BARANDA DE ESCALERA INFERIOR DERECHA",
+      "sap": "3020435",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "480-1165",
+      "descripcion": "BARANDA DE ESCALERA INFERIOR IZQUIERDA",
+      "sap": "3020439",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "4W-0435",
+      "descripcion": "SELLO CUADRADO DE ESCALERA PEQUEÑO",
+      "sap": "3021465",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "489-2792",
+      "descripcion": "BUJE GRANDE DE BARANDA DE ESCALERA BAQUELITA",
+      "sap": "3020746",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "4W-2754",
+      "descripcion": "SELLO CUADRADO DE ESCALERA GRANDE",
+      "sap": "3021469",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "354-0501",
+      "descripcion": "BUJE METALICO DE ESCALERA",
+      "sap": "3011946",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "994K",
+      "np": "624-5529",
+      "descripcion": "ARRANCADOR RH",
+      "sap": "3017292",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "994K",
+      "np": "624-5528",
+      "descripcion": "ARRANCADOR LH",
+      "sap": "3017291",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "CONSUMIBLE",
+      "np": "HP-B-18",
+      "descripcion": "PROTECTOR DE MANGUERA /CANILLERA",
+      "sap": "3083796",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "793D",
+      "np": "157-1364",
+      "descripcion": "SWITCH DE ACTIVACION DE ESCALERA",
+      "sap": "3003085",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "395DL",
+      "np": "",
+      "descripcion": "PUNTAS DE CUCHARON EX03 5UNIDADES",
+      "sap": "3068252",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "PV271",
+      "np": "",
+      "descripcion": "CLIP DE ROD SEAL 7 5/8 4 UNIDADES",
+      "sap": "3030257",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "PV271",
+      "np": "",
+      "descripcion": "ARANDELA DE ROD SEAL 7 5/8 4 UNIDADES",
+      "sap": "3031113",
+      "imagen": "",
+      "cantidadRequerida": 0
+    },
+    {
+      "equipo": "PRECORTE",
+      "np": "3222328551",
+      "descripcion": "MORDAZA PRECORTE",
+      "sap": "",
+      "imagen": "",
+      "cantidadRequerida": 0
+    }
+  ],
+  "source": "seed",
+  "updatedAt": "2026-09-05T17:26:06.344Z"
+}
