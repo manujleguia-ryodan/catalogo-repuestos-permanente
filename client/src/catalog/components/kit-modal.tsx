@@ -3,7 +3,7 @@ import { AlertTriangle, Check, Plus, Table2, Trash2, X } from "lucide-react";
 import type { Part } from "../lib/offline-cache";
 import { deleteKit, kitUnits, type Kit } from "../lib/kit-store";
 import { applyKitToOrder, findRowByNp } from "../lib/kit-order";
-import { itemsToSapComponentsText, itemsToSapQuantitiesText } from "../lib/order-text";
+import { itemsToSapText } from "../lib/order-text";
 import { recordUsage } from "../lib/usage-store";
 
 function fecha(iso: string): string {
@@ -54,28 +54,9 @@ export function KitModal({
     );
   };
 
-  /** Copia los códigos SAP del kit, uno por línea, desde la columna Componente. */
-  const copiarSapComponentes = async () => {
-    const { texto, copiados, omitidos } = itemsToSapComponentsText(kit.items);
-    if (copiados === 0) {
-      setAviso("Ningún repuesto de este kit tiene código SAP.");
-      return;
-    }
-    try {
-      await navigator.clipboard.writeText(texto);
-    } catch {
-      // Sin permisos de portapapeles: el navegador informará el bloqueo si aplica.
-    }
-    setAviso(
-      omitidos > 0
-        ? `SAP copiado en Componente. ${omitidos} sin SAP quedaron fuera; ahora copia Ctd.nece.`
-        : "SAP copiado en Componente; ahora copia Ctd.nece.",
-    );
-  };
-
-  /** Copia solo las cantidades del kit para la celda Ctd.nece seleccionada. */
-  const copiarSapCantidades = async () => {
-    const { texto, copiados, omitidos } = itemsToSapQuantitiesText(kit.items);
+  /** Copia SAP y cantidad en la misma fila: SAP | vacío | Ctd.nece. */
+  const copiarSap = async () => {
+    const { texto, copiados, omitidos } = itemsToSapText(kit.items);
     if (copiados === 0) {
       setAviso("Ningún repuesto de este kit tiene código SAP.");
       return;
@@ -85,11 +66,10 @@ export function KitModal({
     } catch {
       // Sin permisos de portapapeles: no bloqueamos la app.
     }
-    recordUsage(kit.items.map((item) => item.np));
     setAviso(
       omitidos > 0
-        ? `Cantidades copiadas para Ctd.nece. ${omitidos} sin SAP quedaron fuera.`
-        : "Cantidades copiadas; selecciona la primera celda de Ctd.nece y pega.",
+        ? `Copiado para SAP: pega desde Componente; la cantidad irá en el segundo tab. ${omitidos} sin SAP quedaron fuera.`
+        : "Copiado para SAP: pega desde Componente; la cantidad irá en el segundo tab.",
     );
   };
 
@@ -178,17 +158,10 @@ export function KitModal({
               </button>
               <button
                 type="button"
-                onClick={copiarSapComponentes}
+                onClick={copiarSap}
                 className="flex h-12 items-center justify-center gap-2 border border-line px-2 font-display text-xs font-bold tracking-widest text-text uppercase transition-colors active:scale-[0.98] hover:border-amber/60 hover:text-amber"
               >
-                <Table2 className="size-4" /> SAP componente
-              </button>
-              <button
-                type="button"
-                onClick={copiarSapCantidades}
-                className="flex h-12 items-center justify-center gap-2 border border-line px-2 font-display text-xs font-bold tracking-widest text-text uppercase transition-colors active:scale-[0.98] hover:border-amber/60 hover:text-amber"
-              >
-                <Table2 className="size-4" /> Ctd.nece
+                <Table2 className="size-4" /> Copiar SAP
               </button>
             </div>
             {confirmar ? (

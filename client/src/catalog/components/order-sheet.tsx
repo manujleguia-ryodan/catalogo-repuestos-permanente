@@ -9,12 +9,7 @@ import {
   restoreQuantities,
   type QtyMap,
 } from "../lib/qty-store";
-import {
-  orderToSapComponentsText,
-  orderToSapQuantitiesText,
-  orderToText,
-  type Order,
-} from "../lib/order-text";
+import { orderToSapText, orderToText, type Order } from "../lib/order-text";
 import { recordUsage } from "../lib/usage-store";
 import type { Part } from "../lib/offline-cache";
 
@@ -97,28 +92,9 @@ export function OrderSheet({ order, open, onClose, rows, equipos }: OrderSheetPr
     vaciarTrasCopiar("Lista copiada — pégala en WhatsApp o correo.");
   };
 
-  /** SAP: copia los códigos, uno por línea, empezando en la columna Componente. */
-  const copiarSapComponentes = async () => {
-    const { texto, copiados, omitidos } = orderToSapComponentsText(order);
-    if (copiados === 0) {
-      mostrarAviso("Ningún repuesto de la lista tiene código SAP.");
-      return;
-    }
-    try {
-      await navigator.clipboard.writeText(texto);
-    } catch {
-      // sin permisos de portapapeles: no bloqueamos la app
-    }
-    mostrarAviso(
-      omitidos > 0
-        ? `SAP copiado en Componente. ${omitidos} sin código SAP quedaron fuera; ahora copia Cantidades en Ctd.nece.`
-        : "SAP copiado en Componente; ahora copia Cantidades en Ctd.nece.",
-    );
-  };
-
-  /** SAP: copia solo cantidades, una por línea, para la celda Ctd.nece seleccionada. */
-  const copiarSapCantidades = async () => {
-    const { texto, copiados, omitidos } = orderToSapQuantitiesText(order);
+  /** SAP: una fila por repuesto, SAP en Componente y cantidad en el segundo tab. */
+  const copiarSap = async () => {
+    const { texto, copiados, omitidos } = orderToSapText(order);
     if (copiados === 0) {
       mostrarAviso("Ningún repuesto de la lista tiene código SAP.");
       return;
@@ -129,10 +105,10 @@ export function OrderSheet({ order, open, onClose, rows, equipos }: OrderSheetPr
       // sin permisos de portapapeles: no bloqueamos la app
     }
     recordUsage(order.items.map((item) => item.row.np));
-    mostrarAviso(
+    vaciarTrasCopiar(
       omitidos > 0
-        ? `Cantidades copiadas para Ctd.nece. ${omitidos} sin código SAP quedaron fuera.`
-        : "Cantidades copiadas; selecciona la primera celda de Ctd.nece y pega.",
+        ? `Copiado para SAP: pega desde Componente; la cantidad irá en el segundo tab. ${omitidos} sin SAP quedaron fuera.`
+        : "Copiado para SAP: pega desde Componente; la cantidad irá en el segundo tab.",
     );
   };
 
@@ -244,7 +220,7 @@ export function OrderSheet({ order, open, onClose, rows, equipos }: OrderSheetPr
               </p>
             )}
 
-            {/* Fila 1: los dos destinos del pedido. */}
+            {/* Fila 1: WhatsApp y una sola pegada completa para SAP. */}
             <div className="flex items-center gap-2">
               <button
                 type="button"
@@ -255,17 +231,10 @@ export function OrderSheet({ order, open, onClose, rows, equipos }: OrderSheetPr
               </button>
               <button
                 type="button"
-                onClick={copiarSapComponentes}
+                onClick={copiarSap}
                 className="flex h-12 flex-1 items-center justify-center gap-2 border border-line font-display text-sm font-bold tracking-widest text-text uppercase transition-colors active:scale-[0.98] hover:border-amber/60 hover:text-amber"
               >
-                <Table2 className="size-4" /> SAP componente
-              </button>
-              <button
-                type="button"
-                onClick={copiarSapCantidades}
-                className="flex h-12 flex-1 items-center justify-center gap-2 border border-line font-display text-sm font-bold tracking-widest text-text uppercase transition-colors active:scale-[0.98] hover:border-amber/60 hover:text-amber"
-              >
-                <Table2 className="size-4" /> Ctd.nece
+                <Table2 className="size-4" /> Copiar SAP
               </button>
             </div>
 

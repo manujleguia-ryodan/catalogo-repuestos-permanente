@@ -35,17 +35,17 @@ const order: Order = {
 };
 
 describe("formato de portapapeles SAP", () => {
-  it("salta UM y coloca la cantidad en Ctd.nece", () => {
+  it("coloca SAP en Componente y la cantidad después del segundo tab", () => {
     const result = orderToSapText(order);
 
     expect(result).toEqual({
-      texto: "3007141\t\t\t\t2",
+      texto: "3007141\t\t2",
       copiados: 1,
       omitidos: 1,
     });
     const fila = result.texto.split("\n")[0]?.split("\t");
-    expect(fila).toEqual(["3007141", "", "", "", "2"]);
-    expect(fila).toHaveLength(5);
+    expect(fila).toEqual(["3007141", "", "2"]);
+    expect(fila).toHaveLength(3);
   });
 
   it("usa el mismo formato al copiar directamente desde un kit", () => {
@@ -57,7 +57,7 @@ describe("formato de portapapeles SAP", () => {
     const result = itemsToSapText(items);
 
     expect(result).toEqual({
-      texto: "3002920\t\t\t\t1\n3005227\t\t\t\t3",
+      texto: "3002920\t\t1\n3005227\t\t3",
       copiados: 2,
       omitidos: 1,
     });

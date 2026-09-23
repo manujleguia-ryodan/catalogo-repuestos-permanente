@@ -93,13 +93,12 @@ export function itemsToSapQuantitiesText(items: SapItem[]): SapClipboard {
 /**
  * Texto para pegar en la tabla de componentes de SAP S/4HANA.
  *
- * Una línea por repuesto: código SAP, CUATRO tabulaciones y la cantidad. La
- * tabulación adicional salta la columna "UM"; así la cantidad llega a
- * "Ctd.nece" y no se pega como unidad de medida. Nada de N/P, descripción,
- * equipo, marca ni unidad.
+ * Una línea por repuesto: código SAP, DOS tabulaciones y la cantidad. Así SAP
+ * recibe el código en Componente y la cantidad en el segundo tab de la misma
+ * fila, según la posición del cursor indicada por el usuario.
  *
- *   3007141\t\t\t\t2
- *   3002920\t\t\t\t1
+ *   3007141\t\t2
+ *   3002920\t\t1
  *
  * Los repuestos sin código SAP se omiten a propósito: una línea con el SAP
  * vacío correría toda la tabla al pegarla. Se informan aparte para que nadie
@@ -108,9 +107,9 @@ export function itemsToSapQuantitiesText(items: SapItem[]): SapClipboard {
 export function itemsToSapText(items: SapItem[]): SapClipboard {
   const conSap = itemsWithSap(items);
   return {
-    // Una fila de cinco celdas: SAP | vacío | vacío | vacío | Ctd.nece.
+    // Una fila de tres celdas: SAP | vacío | Ctd.nece.
     texto: conSap
-      .map((item) => [item.sap.trim(), "", "", "", String(item.qty)].join("\t"))
+      .map((item) => [item.sap.trim(), "", String(item.qty)].join("\t"))
       .join("\n"),
     copiados: conSap.length,
     omitidos: items.length - conSap.length,
