@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
-import { AlertTriangle, Check, Plus, Trash2, X } from "lucide-react";
+import { AlertTriangle, Check, Plus, Table2, Trash2, X } from "lucide-react";
 import type { Part } from "../lib/offline-cache";
 import { deleteKit, kitUnits, type Kit } from "../lib/kit-store";
 import { applyKitToOrder, findRowByNp } from "../lib/kit-order";
+import { itemsToSapText } from "../lib/order-text";
+import { recordUsage } from "../lib/usage-store";
 
 function fecha(iso: string): string {
   const valor = new Date(iso);
@@ -49,6 +51,26 @@ export function KitModal({
       faltantes.length === 0
         ? `${aplicados} repuestos cargados en la lista de pedido.`
         : `${aplicados} cargados. Sin coincidencia en el catálogo: ${faltantes.join(", ")}.`,
+    );
+  };
+
+  /** Copia el kit sin cargarlo ni alterar la lista de pedido actual. */
+  const copiarSap = async () => {
+    const { texto, copiados, omitidos } = itemsToSapText(kit.items);
+    if (copiados === 0) {
+      setAviso("Ningún repuesto de este kit tiene código SAP.");
+      return;
+    }
+    try {
+      await navigator.clipboard.writeText(texto);
+    } catch {
+      // Sin permisos de portapapeles: el navegador informará el bloqueo si aplica.
+    }
+    recordUsage(kit.items.map((item) => item.np));
+    setAviso(
+      omitidos > 0
+        ? `Copiado para SAP: pega en Componente; la cantidad irá a Ctd.nece. ${omitidos} sin SAP quedaron fuera.`
+        : "Copiado para SAP: pega en Componente; la cantidad irá a Ctd.nece.",
     );
   };
 
@@ -127,13 +149,22 @@ export function KitModal({
             generar el pedido.
           </p>
           <div className="flex items-center gap-2">
-            <button
-              type="button"
-              onClick={agregar}
-              className="flex h-12 flex-1 items-center justify-center gap-2 bg-amber font-display text-sm font-bold tracking-widest text-ink uppercase transition-transform active:scale-[0.98]"
-            >
-              <Plus className="size-4" /> Agregar a lista de pedido
-            </button>
+            <div className="grid flex-1 grid-cols-2 gap-2">
+              <button
+                type="button"
+                onClick={agregar}
+                className="flex h-12 items-center justify-center gap-2 bg-amber px-2 font-display text-xs font-bold tracking-widest text-ink uppercase transition-transform active:scale-[0.98]"
+              >
+                <Plus className="size-4" /> A pedido
+              </button>
+              <button
+                type="button"
+                onClick={copiarSap}
+                className="flex h-12 items-center justify-center gap-2 border border-line px-2 font-display text-xs font-bold tracking-widest text-text uppercase transition-colors active:scale-[0.98] hover:border-amber/60 hover:text-amber"
+              >
+                <Table2 className="size-4" /> Copiar SAP
+              </button>
+            </div>
             {confirmar ? (
               <button
                 type="button"

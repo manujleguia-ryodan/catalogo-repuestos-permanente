@@ -60,25 +60,37 @@ export interface SapClipboard {
   omitidos: number;
 }
 
+/** Fila mínima que SAP necesita para pegar un componente y su cantidad. */
+export interface SapItem {
+  sap: string;
+  qty: number;
+}
+
 /**
  * Texto para pegar en la tabla de componentes de SAP S/4HANA.
  *
- * Una línea por repuesto: código SAP, TRES tabulaciones y la cantidad. Las tres
- * tabulaciones saltan las columnas Descripción y T... para que la cantidad
- * caiga en "Ctd.nec...". Nada de N/P, descripción, equipo, marca ni unidad.
+ * Una línea por repuesto: código SAP, CUATRO tabulaciones y la cantidad. La
+ * tabulación adicional salta la columna "UM"; así la cantidad llega a
+ * "Ctd.nece" y no se pega como unidad de medida. Nada de N/P, descripción,
+ * equipo, marca ni unidad.
  *
- *   3007141\t\t\t2
- *   3002920\t\t\t1
+ *   3007141\t\t\t\t2
+ *   3002920\t\t\t\t1
  *
  * Los repuestos sin código SAP se omiten a propósito: una línea con el SAP
  * vacío correría toda la tabla al pegarla. Se informan aparte para que nadie
  * dé por copiado algo que no salió.
  */
-export function orderToSapText(order: Order): SapClipboard {
-  const conSap = order.items.filter((item) => (item.row.sap || "").trim());
+export function itemsToSapText(items: SapItem[]): SapClipboard {
+  const conSap = items.filter((item) => (item.sap || "").trim());
   return {
-    texto: conSap.map((item) => `${item.row.sap.trim()}\t\t\t${item.qty}`).join("\n"),
+    texto: conSap.map((item) => `${item.sap.trim()}\t\t\t\t${item.qty}`).join("\n"),
     copiados: conSap.length,
-    omitidos: order.items.length - conSap.length,
+    omitidos: items.length - conSap.length,
   };
+}
+
+/** Convierte el pedido actual al formato SAP de Componentes / Ctd.nece. */
+export function orderToSapText(order: Order): SapClipboard {
+  return itemsToSapText(order.items.map((item) => ({ sap: item.row.sap, qty: item.qty })));
 }

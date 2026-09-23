@@ -92,7 +92,7 @@ export function OrderSheet({ order, open, onClose, rows, equipos }: OrderSheetPr
     vaciarTrasCopiar("Lista copiada — pégala en WhatsApp o correo.");
   };
 
-  /** SAP S/4HANA: código SAP + tres tabulaciones + cantidad. */
+  /** SAP S/4HANA: código SAP + cuatro tabulaciones + cantidad en Ctd.nece. */
   const copiarSap = async () => {
     const { texto, copiados, omitidos } = orderToSapText(order);
     if (copiados === 0) {
@@ -107,8 +107,8 @@ export function OrderSheet({ order, open, onClose, rows, equipos }: OrderSheetPr
     recordUsage(order.items.map((item) => item.row.np));
     vaciarTrasCopiar(
       omitidos > 0
-        ? `¡Copiado para SAP! Pega con Ctrl+V en la primera celda vacía de Componente. ${omitidos} sin código SAP quedaron fuera.`
-        : "¡Copiado para SAP! Pega con Ctrl+V en la primera celda vacía de Componente.",
+        ? `¡Copiado para SAP! Pega con Ctrl+V en Componente: la cantidad irá a Ctd.nece. ${omitidos} sin código SAP quedaron fuera.`
+        : "¡Copiado para SAP! Pega con Ctrl+V en Componente: la cantidad irá a Ctd.nece.",
     );
   };
 
