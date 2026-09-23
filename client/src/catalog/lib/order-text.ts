@@ -84,7 +84,10 @@ export interface SapItem {
 export function itemsToSapText(items: SapItem[]): SapClipboard {
   const conSap = items.filter((item) => (item.sap || "").trim());
   return {
-    texto: conSap.map((item) => `${item.sap.trim()}\t\t\t\t${item.qty}`).join("\n"),
+    // Una fila de cinco celdas: SAP | vacío | vacío | vacío | Ctd.nece.
+    texto: conSap
+      .map((item) => [item.sap.trim(), "", "", "", String(item.qty)].join("\t"))
+      .join("\n"),
     copiados: conSap.length,
     omitidos: items.length - conSap.length,
   };

@@ -37,7 +37,9 @@ describe("formato de portapapeles SAP", () => {
       copiados: 1,
       omitidos: 1,
     });
-    expect(result.texto.split("\t")).toHaveLength(5);
+    const fila = result.texto.split("\n")[0]?.split("\t");
+    expect(fila).toEqual(["3007141", "", "", "", "2"]);
+    expect(fila).toHaveLength(5);
   });
 
   it("usa el mismo formato al copiar directamente desde un kit", () => {
