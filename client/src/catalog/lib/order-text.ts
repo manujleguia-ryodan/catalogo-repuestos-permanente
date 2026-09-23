@@ -66,6 +66,30 @@ export interface SapItem {
   qty: number;
 }
 
+function itemsWithSap(items: SapItem[]): SapItem[] {
+  return items.filter((item) => (item.sap || "").trim());
+}
+
+/** Números SAP, uno por línea, para pegar comenzando en la columna Componente. */
+export function itemsToSapComponentsText(items: SapItem[]): SapClipboard {
+  const conSap = itemsWithSap(items);
+  return {
+    texto: conSap.map((item) => item.sap.trim()).join("\n"),
+    copiados: conSap.length,
+    omitidos: items.length - conSap.length,
+  };
+}
+
+/** Cantidades, una por línea, para pegar comenzando en la celda Ctd.nece seleccionada. */
+export function itemsToSapQuantitiesText(items: SapItem[]): SapClipboard {
+  const conSap = itemsWithSap(items);
+  return {
+    texto: conSap.map((item) => String(item.qty)).join("\n"),
+    copiados: conSap.length,
+    omitidos: items.length - conSap.length,
+  };
+}
+
 /**
  * Texto para pegar en la tabla de componentes de SAP S/4HANA.
  *
@@ -82,7 +106,7 @@ export interface SapItem {
  * dé por copiado algo que no salió.
  */
 export function itemsToSapText(items: SapItem[]): SapClipboard {
-  const conSap = items.filter((item) => (item.sap || "").trim());
+  const conSap = itemsWithSap(items);
   return {
     // Una fila de cinco celdas: SAP | vacío | vacío | vacío | Ctd.nece.
     texto: conSap
@@ -96,4 +120,12 @@ export function itemsToSapText(items: SapItem[]): SapClipboard {
 /** Convierte el pedido actual al formato SAP de Componentes / Ctd.nece. */
 export function orderToSapText(order: Order): SapClipboard {
   return itemsToSapText(order.items.map((item) => ({ sap: item.row.sap, qty: item.qty })));
+}
+
+export function orderToSapComponentsText(order: Order): SapClipboard {
+  return itemsToSapComponentsText(order.items.map((item) => ({ sap: item.row.sap, qty: item.qty })));
+}
+
+export function orderToSapQuantitiesText(order: Order): SapClipboard {
+  return itemsToSapQuantitiesText(order.items.map((item) => ({ sap: item.row.sap, qty: item.qty })));
 }

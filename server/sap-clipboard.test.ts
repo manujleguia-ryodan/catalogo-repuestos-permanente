@@ -1,5 +1,11 @@
 import { describe, expect, it } from "vitest";
-import { itemsToSapText, orderToSapText, type Order } from "../client/src/catalog/lib/order-text";
+import {
+  itemsToSapComponentsText,
+  itemsToSapQuantitiesText,
+  itemsToSapText,
+  orderToSapText,
+  type Order,
+} from "../client/src/catalog/lib/order-text";
 
 const order: Order = {
   items: [
@@ -43,16 +49,27 @@ describe("formato de portapapeles SAP", () => {
   });
 
   it("usa el mismo formato al copiar directamente desde un kit", () => {
-    const result = itemsToSapText([
+    const items = [
       { sap: "3002920", qty: 1 },
       { sap: "", qty: 4 },
       { sap: "3005227", qty: 3 },
-    ]);
+    ];
+    const result = itemsToSapText(items);
 
     expect(result).toEqual({
       texto: "3002920\t\t\t\t1\n3005227\t\t\t\t3",
       copiados: 2,
       omitidos: 1,
     });
+  });
+
+  it("separa Componentes y Ctd.nece para pegar desde la celda con cursor", () => {
+    const items = [
+      { sap: "3007141", qty: 2 },
+      { sap: "3027668", qty: 1 },
+    ];
+
+    expect(itemsToSapComponentsText(items).texto).toBe("3007141\n3027668");
+    expect(itemsToSapQuantitiesText(items).texto).toBe("2\n1");
   });
 });
