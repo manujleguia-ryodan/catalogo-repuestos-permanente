@@ -4,6 +4,7 @@ import type { Part } from "../lib/offline-cache";
 import {
   kitFingerprint,
   normalizeEquipo,
+  deleteKit,
   updateKit,
   validateKit,
   type Kit,
@@ -26,6 +27,7 @@ export function KitEditDialog({
   const [trabajo, setTrabajo] = useState("");
   const [equipo, setEquipo] = useState("");
   const [items, setItems] = useState<KitItem[]>([]);
+  const [compartir, setCompartir] = useState(false);
   const [aviso, setAviso] = useState<string | null>(null);
   const sharedActions = useSharedKitActions();
 
@@ -34,6 +36,7 @@ export function KitEditDialog({
     setTrabajo(kit.trabajo);
     setEquipo(kit.equipo);
     setItems(kit.items.map((item) => ({ ...item })));
+    setCompartir(kit.origen === "compartido");
     setAviso(null);
   }, [kit]);
 
@@ -70,17 +73,22 @@ export function KitEditDialog({
       actualizadoEn: new Date().toISOString(),
     };
 
-    if (kit.origen === "compartido") {
+    if (kit.origen === "compartido" || compartir) {
       const { origen: _origen, ...payload } = next;
       try {
-        await sharedActions.update.mutateAsync(payload);
+        if (kit.origen === "compartido") {
+          await sharedActions.update.mutateAsync(payload);
+        } else {
+          await sharedActions.create.mutateAsync(payload);
+          deleteKit(kit.id);
+        }
         onClose();
       } catch (error) {
         if (error instanceof ApiRequestError && typeof error.data === "object" && error.data && "kit" in error.data) {
           const existente = (error.data as { kit: Kit }).kit;
-          setAviso(`No se guardó: los mismos componentes ya están en ${existente.codigo}.`);
+          setAviso(`No se compartió: los mismos componentes ya están en ${existente.codigo}.`);
         } else {
-          setAviso("No se pudo guardar el kit compartido. Revisa tu conexión e inténtalo otra vez.");
+          setAviso("No se pudo compartir el kit. Revisa tu conexión e inténtalo otra vez.");
         }
       }
       return;
@@ -137,13 +145,21 @@ export function KitEditDialog({
             ))}
           </ul>
 
+          <label className={`mt-4 flex items-center gap-3 border px-3 py-3 ${kit.origen === "compartido" ? "border-amber/50 bg-amber/5" : "border-line bg-surface"}`}>
+            <input type="checkbox" checked={compartir} onChange={(event) => setCompartir(event.target.checked)} disabled={kit.origen === "compartido"} className="size-4 accent-amber" />
+            <span className="min-w-0">
+              <span className="block text-sm font-semibold text-text">{kit.origen === "compartido" ? "Kit compartido" : "Compartir este kit"}</span>
+              <span className="mt-0.5 block text-[11px] text-muted">{kit.origen === "compartido" ? "Todos los usuarios pueden verlo, cargarlo y editarlo." : "Todos los usuarios podrán verlo, cargarlo y editarlo."}</span>
+            </span>
+          </label>
+
           {errores.length > 0 && <ul className="mt-3 space-y-1">{errores.map((error) => <li key={error} className="flex items-start gap-1.5 text-[11px] text-warn"><AlertTriangle className="mt-0.5 size-3 shrink-0" /> {error}</li>)}</ul>}
           {aviso && <p className="mt-3 flex items-start gap-1.5 text-xs text-warn"><AlertTriangle className="mt-0.5 size-3.5 shrink-0" /> {aviso}</p>}
         </div>
 
         <div className="border-t border-line px-3 pt-3 pb-6">
-          <button type="button" onClick={guardar} disabled={errores.length > 0 || sharedActions.update.isPending} className="flex h-12 w-full items-center justify-center gap-2 bg-amber font-display text-sm font-bold tracking-widest text-ink uppercase transition-transform active:scale-[0.98] disabled:cursor-not-allowed disabled:bg-surface-2 disabled:text-muted">
-            <Check className="size-4" /> {sharedActions.update.isPending ? "Guardando…" : "Guardar cambios"}
+          <button type="button" onClick={guardar} disabled={errores.length > 0 || sharedActions.update.isPending || sharedActions.create.isPending} className="flex h-12 w-full items-center justify-center gap-2 bg-amber font-display text-sm font-bold tracking-widest text-ink uppercase transition-transform active:scale-[0.98] disabled:cursor-not-allowed disabled:bg-surface-2 disabled:text-muted">
+            <Check className="size-4" /> {sharedActions.update.isPending || sharedActions.create.isPending ? "Guardando…" : compartir && kit.origen === "local" ? "Compartir kit" : "Guardar cambios"}
           </button>
         </div>
       </dialog>
