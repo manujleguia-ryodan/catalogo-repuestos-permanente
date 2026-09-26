@@ -80,6 +80,16 @@ function makeId(): string {
   return `shared_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 9)}`;
 }
 
+export function uniqueSharedCode(requested: string, equipo: string, rows: Array<{ codigo: string }>): string {
+  const used = new Set(rows.map((row) => row.codigo));
+  if (!used.has(requested)) return requested;
+  const slug = equipo.trim().replace(/[^A-Za-z0-9]+/g, "").toUpperCase() || "GEN";
+  const prefix = `KIT-${slug}-`;
+  let number = 1;
+  while (used.has(`${prefix}${String(number).padStart(3, "0")}`)) number += 1;
+  return `${prefix}${String(number).padStart(3, "0")}`;
+}
+
 export function registerSharedKitRoutes(app: Express) {
   app.get("/api/shared-kits", async (_req: Request, res: Response) => {
     const db = await getDb();
@@ -98,9 +108,10 @@ export function registerSharedKitRoutes(app: Express) {
     const duplicado = rows.find((row) => componentFingerprint(JSON.parse(row.items) as KitItem[]) === canonical);
     if (duplicado) return res.status(409).json({ error: "Ya existe un kit con los mismos componentes", kit: serialize(duplicado) });
     const id = makeId();
+    const codigo = uniqueSharedCode(payload.codigo, payload.equipo, rows);
     await db.insert(sharedKits).values({
       id,
-      codigo: payload.codigo,
+      codigo,
       trabajo: payload.trabajo,
       equipo: payload.equipo,
       fingerprint: canonical,

@@ -87,6 +87,9 @@ export function KitEditDialog({
         if (error instanceof ApiRequestError && typeof error.data === "object" && error.data && "kit" in error.data) {
           const existente = (error.data as { kit: Kit }).kit;
           setAviso(`No se compartió: los mismos componentes ya están en ${existente.codigo}.`);
+        } else if (error instanceof ApiRequestError) {
+          const detalle = typeof error.data === "object" && error.data && "error" in error.data && typeof error.data.error === "string" ? error.data.error : error.message;
+          setAviso(`No se pudo compartir: ${detalle}`);
         } else {
           setAviso("No se pudo compartir el kit. Revisa tu conexión e inténtalo otra vez.");
         }

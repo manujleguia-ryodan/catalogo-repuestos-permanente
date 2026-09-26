@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { cleanSharedKitPayload } from "./shared-kit-routes";
+import { cleanSharedKitPayload, uniqueSharedCode } from "./shared-kit-routes";
 import { kitFingerprint } from "../client/src/catalog/lib/kit-store";
 
 const valid = {
@@ -18,6 +18,10 @@ describe("kits compartidos", () => {
     const first = kitFingerprint("834K", [{ np: "2J-3507", sap: "341084", descripcion: "Tuerca", equipo: "834K", qty: 1 }]);
     const second = kitFingerprint("D10T2", [{ np: " 2J-3507 ", sap: "341084", descripcion: "Otra descripción", equipo: "D10T2", qty: 9 }]);
     expect(second).toBe(first);
+  });
+
+  it("resuelve el código ocupado al compartir un kit local", () => {
+    expect(uniqueSharedCode("KIT-PV271-001", "PV271", [{ codigo: "KIT-PV271-001" }])).toBe("KIT-PV271-002");
   });
 
   it("acepta un kit válido y normaliza texto y cantidades", () => {
