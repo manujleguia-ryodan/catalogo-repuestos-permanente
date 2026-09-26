@@ -148,7 +148,7 @@ export function KitDialog({ open, order, rows, equipos, onClose }: KitDialogProp
       >
         <div className="flex items-start gap-2 border-b border-line px-3 py-2">
           <div className="min-w-0 flex-1">
-            <span className="font-display text-[10px] leading-none font-bold tracking-widest text-amber uppercase">
+            <span className="font-display text-[10px] leading-none font-bold tracking-widest text-amber">
               Nuevo kit
             </span>
             <h2 className="mt-1 text-sm leading-snug font-semibold text-text">
@@ -170,7 +170,7 @@ export function KitDialog({ open, order, rows, equipos, onClose }: KitDialogProp
           {creado ? (
             <div className="py-6 text-center">
               <Check className="mx-auto size-8 text-ok" />
-              <p className="mt-3 font-display text-lg font-bold tracking-wide uppercase">
+              <p className="mt-3 font-display text-lg font-bold tracking-wide">
                 Kit guardado
               </p>
               <p className="num mt-2 border border-amber/40 bg-amber/10 px-3 py-2 font-display text-base font-bold tracking-widest text-amber">
@@ -286,7 +286,7 @@ export function KitDialog({ open, order, rows, equipos, onClose }: KitDialogProp
                   <button
                     type="button"
                     onClick={usarExistente}
-                    className="mt-2.5 flex h-11 w-full items-center justify-center gap-2 border border-amber font-display text-sm font-bold tracking-widest text-amber uppercase transition-transform active:scale-[0.98]"
+                    className="mt-2.5 flex h-11 w-full items-center justify-center gap-2 border border-amber font-display text-sm font-bold tracking-widest text-amber transition-transform active:scale-[0.98]"
                   >
                     Usar kit existente
                   </button>
@@ -301,7 +301,7 @@ export function KitDialog({ open, order, rows, equipos, onClose }: KitDialogProp
             <button
               type="button"
               onClick={onClose}
-              className="flex h-12 w-full items-center justify-center gap-2 bg-amber font-display text-sm font-bold tracking-widest text-ink uppercase transition-transform active:scale-[0.98]"
+              className="flex h-12 w-full items-center justify-center gap-2 bg-amber font-display text-sm font-bold tracking-widest text-ink transition-transform active:scale-[0.98]"
             >
               Listo
             </button>
@@ -310,7 +310,7 @@ export function KitDialog({ open, order, rows, equipos, onClose }: KitDialogProp
               type="button"
               onClick={guardar}
               disabled={!valido || duplicado !== null || sharedActions.create.isPending}
-              className="flex h-12 w-full items-center justify-center gap-2 bg-amber font-display text-sm font-bold tracking-widest text-ink uppercase transition-transform active:scale-[0.98] disabled:cursor-not-allowed disabled:bg-surface-2 disabled:text-muted"
+              className="flex h-12 w-full items-center justify-center gap-2 bg-amber font-display text-sm font-bold tracking-widest text-ink transition-transform active:scale-[0.98] disabled:cursor-not-allowed disabled:bg-surface-2 disabled:text-muted"
             >
               <Package className="size-4" /> {sharedActions.create.isPending ? "Guardando…" : "Guardar kit"}
             </button>

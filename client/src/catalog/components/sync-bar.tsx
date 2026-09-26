@@ -18,7 +18,7 @@ export function SyncBar({ updatedAt, source, online, refreshing, onRefresh }: Sy
   return (
     <header className="z-20 border-b border-line bg-ink/85 backdrop-blur-md">
       <div className="mx-auto flex w-full max-w-[780px] items-center gap-3 px-4 py-3">
-        <h1 className="font-display text-xl leading-none font-bold tracking-wide uppercase">
+        <h1 className="font-display text-xl leading-none font-bold tracking-wide">
           Repuestos
         </h1>
 

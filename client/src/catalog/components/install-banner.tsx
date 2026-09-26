@@ -15,7 +15,7 @@ export function InstallBanner() {
       <div className="mx-auto flex w-full max-w-[780px] items-center gap-3 px-4 py-3">
         <Smartphone className="size-5 shrink-0 text-amber" />
         <div className="min-w-0 flex-1">
-          <p className="font-display text-sm font-semibold tracking-wide uppercase">
+          <p className="font-display text-sm font-semibold tracking-wide">
             Instalar como aplicación
           </p>
           <p className="truncate text-xs text-muted">
@@ -28,7 +28,7 @@ export function InstallBanner() {
           <button
             type="button"
             onClick={() => void install()}
-            className="h-9 shrink-0 bg-amber px-4 font-display text-sm font-bold tracking-wide text-ink uppercase active:scale-[0.98]"
+            className="h-9 shrink-0 bg-amber px-4 font-display text-sm font-bold tracking-wide text-ink active:scale-[0.98]"
           >
             Instalar
           </button>
@@ -36,7 +36,7 @@ export function InstallBanner() {
           <button
             type="button"
             onClick={() => setShowIos((v) => !v)}
-            className="flex h-9 shrink-0 items-center gap-1.5 border border-amber/50 px-3 font-display text-sm font-bold tracking-wide text-amber uppercase active:scale-[0.98]"
+            className="flex h-9 shrink-0 items-center gap-1.5 border border-amber/50 px-3 font-display text-sm font-bold tracking-wide text-amber active:scale-[0.98]"
           >
             <Share className="size-4" />
             Cómo

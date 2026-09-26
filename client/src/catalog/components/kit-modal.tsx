@@ -99,7 +99,7 @@ export function KitModal({
       >
           <div className="flex items-start gap-2 border-b border-line px-3 py-2">
           <div className="min-w-0 flex-1">
-            <span className="num font-display text-[10px] leading-none font-bold tracking-widest text-amber uppercase">
+            <span className="num font-display text-[10px] leading-none font-bold tracking-widest text-amber">
               {kit.codigo}
             </span>
             <h2 className="mt-1 line-clamp-2 text-sm leading-snug font-semibold text-text">
@@ -109,7 +109,7 @@ export function KitModal({
               {kit.equipo || "—"} · {kit.items.length} repuestos · {kitUnits(kit)} u · creado{" "}
               {fecha(kit.creadoEn)}
             </p>
-            <p className="mt-1 flex items-center gap-1 text-[10px] font-display tracking-widest text-muted uppercase">
+            <p className="mt-1 flex items-center gap-1 text-[10px] font-display tracking-widest text-muted">
               {kit.origen === "compartido" && <Cloud className="size-3 text-ok" />}
               {kit.origen === "compartido" ? "Compartido" : "Este dispositivo"}
             </p>
@@ -165,21 +165,21 @@ export function KitModal({
               <button
                 type="button"
                 onClick={agregar}
-                className="flex h-12 items-center justify-center gap-2 bg-amber px-2 font-display text-xs font-bold tracking-widest text-ink uppercase transition-transform active:scale-[0.98]"
+                className="flex h-12 items-center justify-center gap-2 bg-amber px-2 font-display text-xs font-bold tracking-widest text-ink transition-transform active:scale-[0.98]"
               >
                 <Plus className="size-4" /> A pedido
               </button>
               <button
                 type="button"
                 onClick={() => setEditar(true)}
-                className="flex h-12 items-center justify-center gap-2 border border-line px-2 font-display text-xs font-bold tracking-widest text-text uppercase transition-colors active:scale-[0.98] hover:border-amber/60 hover:text-amber"
+                className="flex h-12 items-center justify-center gap-2 border border-line px-2 font-display text-xs font-bold tracking-widest text-text transition-colors active:scale-[0.98] hover:border-amber/60 hover:text-amber"
               >
                 <Pencil className="size-4" /> Editar
               </button>
               <button
                 type="button"
                 onClick={copiarSap}
-                className="flex h-12 items-center justify-center gap-2 border border-line px-2 font-display text-xs font-bold tracking-widest text-text uppercase transition-colors active:scale-[0.98] hover:border-amber/60 hover:text-amber"
+                className="flex h-12 items-center justify-center gap-2 border border-line px-2 font-display text-xs font-bold tracking-widest text-text transition-colors active:scale-[0.98] hover:border-amber/60 hover:text-amber"
               >
                 <Table2 className="size-4" /> Copiar SAP
               </button>
@@ -192,7 +192,7 @@ export function KitModal({
                   else deleteKit(kit.id);
                   onClose();
                 }}
-                className="flex h-12 shrink-0 items-center gap-2 border border-warn px-3 font-display text-sm font-bold tracking-widest text-warn uppercase transition-transform active:scale-[0.98]"
+                className="flex h-12 shrink-0 items-center gap-2 border border-warn px-3 font-display text-sm font-bold tracking-widest text-warn transition-transform active:scale-[0.98]"
               >
                 <Trash2 className="size-4" /> {sharedActions.remove.isPending ? "Borrando…" : "Borrar"}
               </button>

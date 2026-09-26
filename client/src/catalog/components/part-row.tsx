@@ -115,7 +115,7 @@ export function PartRow({
     >
       {/* Columna izquierda: toda la información del repuesto */}
       <div className="min-w-0 flex-1">
-        <span className="font-display text-[11px] leading-none font-semibold tracking-widest text-amber uppercase">
+        <span className="font-display text-[11px] leading-none font-semibold tracking-widest text-amber">
           {part.equipo || "—"}
         </span>
 

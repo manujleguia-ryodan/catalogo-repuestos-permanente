@@ -46,7 +46,7 @@ export function KitList({
           {busqueda && <button type="button" onClick={() => setBusqueda("")} aria-label="Limpiar búsqueda de kits"><X className="size-4 text-muted" /></button>}
         </div>
         <div className="flex flex-wrap gap-1.5 pt-3">
-          {([['todos', 'Todos'], ['compartido', 'Compartidos'], ['local', 'Este dispositivo']] as const).map(([valor, etiqueta]) => <button key={valor} type="button" onClick={() => setOrigen(valor)} className={`rounded-full border px-2.5 py-1 font-display text-[11px] font-semibold tracking-wider uppercase transition-colors ${origen === valor ? "border-amber bg-amber text-ink" : "border-line bg-surface text-muted hover:border-amber/40 hover:text-text"}`}>{etiqueta}</button>)}
+          {([['todos', 'Todos'], ['compartido', 'Compartidos'], ['local', 'Este dispositivo']] as const).map(([valor, etiqueta]) => <button key={valor} type="button" onClick={() => setOrigen(valor)} className={`rounded-full border px-2.5 py-1 font-display text-[11px] font-semibold tracking-wider transition-colors ${origen === valor ? "border-amber bg-amber text-ink" : "border-line bg-surface text-muted hover:border-amber/40 hover:text-text"}`}>{etiqueta}</button>)}
         </div>
         <div className="flex flex-wrap gap-x-1.5 gap-y-1.5 py-3">
           {equipos.map((item) => {
@@ -56,7 +56,7 @@ export function KitList({
                 key={item}
                 type="button"
                 onClick={() => setEquipo(item)}
-                className={`num rounded-full border px-2.5 py-1 font-display text-[11px] font-semibold tracking-wider uppercase transition-colors ${
+                className={`num rounded-full border px-2.5 py-1 font-display text-[11px] font-semibold tracking-wider transition-colors ${
                   active
                     ? "border-amber bg-amber text-ink"
                     : "border-line bg-surface text-muted hover:border-amber/40 hover:text-text"
@@ -86,7 +86,7 @@ export function KitList({
       ) : visibles.length === 0 ? (
         <div className="border border-dashed border-line px-4 py-10 text-center">
           <p className="text-sm text-text">No hay kits con esos filtros.</p>
-          <button type="button" onClick={() => { setBusqueda(""); setOrigen("todos"); setEquipo("TODOS LOS EQUIPOS"); }} className="mt-3 text-xs font-bold uppercase tracking-wide text-amber">Limpiar filtros</button>
+          <button type="button" onClick={() => { setBusqueda(""); setOrigen("todos"); setEquipo("TODOS LOS EQUIPOS"); }} className="mt-3 text-xs font-bold tracking-wide text-amber">Limpiar filtros</button>
         </div>
       ) : (
         <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">

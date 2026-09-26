@@ -142,7 +142,7 @@ function Index() {
                   key={valor}
                   type="button"
                   onClick={() => setTab(valor)}
-                  className={`h-10 flex-1 border font-display text-[11px] font-bold tracking-widest uppercase transition-colors ${
+                  className={`h-10 flex-1 border font-display text-[11px] font-bold tracking-widest transition-colors ${
                     active
                       ? "border-amber bg-amber/10 text-amber"
                       : "border-line bg-surface text-muted hover:border-amber/40 hover:text-text"
@@ -182,7 +182,7 @@ function Index() {
                   key={item}
                   type="button"
                   onClick={() => setEquipo(item)}
-                  className={`num rounded-full border px-2.5 py-1 font-display text-[11px] font-semibold tracking-wider uppercase transition-colors ${
+                  className={`num rounded-full border px-2.5 py-1 font-display text-[11px] font-semibold tracking-wider transition-colors ${
                     active
                       ? "border-amber bg-amber text-ink"
                       : "border-line bg-surface text-muted hover:border-amber/40 hover:text-text"
@@ -236,7 +236,7 @@ function Index() {
           />
         ) : filtered.length === 0 ? (
           <div className="px-4 py-16 text-center">
-            <p className="font-display text-lg font-semibold tracking-wide uppercase">
+            <p className="font-display text-lg font-semibold tracking-wide">
               Sin resultados
             </p>
             <p className="mt-1 text-sm text-muted">

@@ -34,7 +34,7 @@ export function HomePanel({
     <div className="px-4 pb-6">
       <section>
         <div className="flex items-baseline justify-between py-3">
-          <h2 className="flex items-center gap-2 font-display text-sm font-bold tracking-widest uppercase">
+          <h2 className="flex items-center gap-2 font-display text-sm font-bold tracking-widest">
             <Package className="size-4 text-amber" /> Kits de mantenimiento
           </h2>
           {kits.length > visibles.length && (
@@ -67,7 +67,7 @@ export function HomePanel({
 
       <section className="mt-6">
         <div className="flex items-baseline justify-between py-3">
-          <h2 className="flex items-center gap-2 font-display text-sm font-bold tracking-widest uppercase">
+          <h2 className="flex items-center gap-2 font-display text-sm font-bold tracking-widest">
             <Flame className="size-4 text-amber" /> Top repuestos
           </h2>
           <span className="label-xs">{top.esEjemplo ? "Ejemplo" : "Tu uso"}</span>

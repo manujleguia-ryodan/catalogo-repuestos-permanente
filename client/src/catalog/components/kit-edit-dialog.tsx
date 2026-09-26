@@ -123,7 +123,7 @@ export function KitEditDialog({
       <dialog open aria-modal="true" aria-label={`Editar ${kit.codigo}`} className="relative m-0 flex max-h-[88dvh] w-full max-w-[480px] flex-col border border-amber/40 bg-ink">
         <div className="flex items-start gap-2 border-b border-line px-3 py-2">
           <div className="min-w-0 flex-1">
-            <span className="flex items-center gap-1.5 font-display text-[10px] font-bold tracking-widest text-amber uppercase">
+            <span className="flex items-center gap-1.5 font-display text-[10px] font-bold tracking-widest text-amber">
               <Pencil className="size-3" /> Editar kit {kit.codigo}
             </span>
             <p className="mt-1 text-xs text-muted">
@@ -172,14 +172,14 @@ export function KitEditDialog({
             <p className="font-semibold">¿Compartir este kit con todos los usuarios?</p>
             <p className="mt-1 text-muted">Se quitará la copia local y el kit quedará disponible para cargarlo y editarlo desde cualquier dispositivo.</p>
             <div className="mt-3 flex gap-2">
-              <button type="button" onClick={() => setConfirmarCompartir(false)} className="h-9 flex-1 border border-line text-[11px] font-bold uppercase text-muted">Cancelar</button>
-              <button type="button" onClick={guardar} className="h-9 flex-1 bg-amber text-[11px] font-bold uppercase text-ink">Confirmar y compartir</button>
+              <button type="button" onClick={() => setConfirmarCompartir(false)} className="h-9 flex-1 border border-line text-[11px] font-bold text-muted">Cancelar</button>
+              <button type="button" onClick={guardar} className="h-9 flex-1 bg-amber text-[11px] font-bold text-ink">Confirmar y compartir</button>
             </div>
           </div>}
         </div>
 
         <div className="border-t border-line px-3 pt-3 pb-6">
-          <button type="button" onClick={guardar} disabled={errores.length > 0 || sharedActions.update.isPending || sharedActions.create.isPending} className="flex h-12 w-full items-center justify-center gap-2 bg-amber font-display text-sm font-bold tracking-widest text-ink uppercase transition-transform active:scale-[0.98] disabled:cursor-not-allowed disabled:bg-surface-2 disabled:text-muted">
+          <button type="button" onClick={guardar} disabled={errores.length > 0 || sharedActions.update.isPending || sharedActions.create.isPending} className="flex h-12 w-full items-center justify-center gap-2 bg-amber font-display text-sm font-bold tracking-widest text-ink transition-transform active:scale-[0.98] disabled:cursor-not-allowed disabled:bg-surface-2 disabled:text-muted">
             <Check className="size-4" /> {sharedActions.update.isPending || sharedActions.create.isPending ? "Guardando…" : compartir && kit.origen === "local" ? "Compartir kit" : "Guardar cambios"}
           </button>
         </div>

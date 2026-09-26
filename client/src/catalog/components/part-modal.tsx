@@ -44,7 +44,7 @@ function Foto({ src, alt }: { src: string; alt: string }) {
       <div className={CAJA_FOTO}>
         <div className="flex flex-col items-center gap-2 text-muted">
           <ImageOff className="size-8" />
-          <span className="font-display text-xs font-semibold tracking-widest uppercase">
+          <span className="font-display text-xs font-semibold tracking-widest">
             Imagen no disponible
           </span>
         </div>
@@ -147,7 +147,7 @@ export function PartModal({ part, onClose }: PartModalProps) {
       >
         <div className="flex items-start gap-2 border-b border-line px-3 py-2">
           <div className="min-w-0 flex-1">
-            <span className="font-display text-[10px] leading-none font-semibold tracking-widest text-amber uppercase">
+            <span className="font-display text-[10px] leading-none font-semibold tracking-widest text-amber">
               {part.equipo || "—"}
             </span>
             <h2 className="mt-1 line-clamp-2 text-sm leading-snug font-semibold text-text">
@@ -240,7 +240,7 @@ export function PartModal({ part, onClose }: PartModalProps) {
               type="button"
               onClick={agregar}
               disabled={cantidad <= 0}
-              className="h-11 flex-1 bg-amber font-display text-sm font-bold tracking-widest text-ink uppercase transition-transform active:scale-[0.98] disabled:opacity-40"
+              className="h-11 flex-1 bg-amber font-display text-sm font-bold tracking-widest text-ink transition-transform active:scale-[0.98] disabled:opacity-40"
             >
               Agregar a mi lista
             </button>

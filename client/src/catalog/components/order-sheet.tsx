@@ -132,7 +132,7 @@ export function OrderSheet({ order, open, onClose, rows, equipos }: OrderSheetPr
             <button
               type="button"
               onClick={deshacer}
-              className="flex h-12 flex-1 items-center justify-center gap-2 border border-line font-display text-sm font-bold tracking-widest text-text uppercase transition-colors active:scale-[0.98] hover:border-amber/60 hover:text-amber"
+              className="flex h-12 flex-1 items-center justify-center gap-2 border border-line font-display text-sm font-bold tracking-widest text-text transition-colors active:scale-[0.98] hover:border-amber/60 hover:text-amber"
             >
               <RotateCcw className="size-4" /> Deshacer
             </button>
@@ -142,7 +142,7 @@ export function OrderSheet({ order, open, onClose, rows, equipos }: OrderSheetPr
                 setHecho(null);
                 onClose();
               }}
-              className="flex h-12 flex-1 items-center justify-center gap-2 bg-amber font-display text-sm font-bold tracking-widest text-ink uppercase transition-transform active:scale-[0.98]"
+              className="flex h-12 flex-1 items-center justify-center gap-2 bg-amber font-display text-sm font-bold tracking-widest text-ink transition-transform active:scale-[0.98]"
             >
               Listo
             </button>
@@ -165,7 +165,7 @@ export function OrderSheet({ order, open, onClose, rows, equipos }: OrderSheetPr
         <div className="relative flex max-h-[88dvh] w-full max-w-[780px] flex-col border-t border-amber/40 bg-ink">
           <div className="flex items-center gap-3 border-b border-line px-4 py-3">
             <div className="min-w-0 flex-1">
-              <h2 className="font-display text-lg leading-none font-bold tracking-wide uppercase">
+              <h2 className="font-display text-lg leading-none font-bold tracking-wide">
                 Repuestos apartados
               </h2>
               <p className="num mt-1 text-xs text-muted">
@@ -187,7 +187,7 @@ export function OrderSheet({ order, open, onClose, rows, equipos }: OrderSheetPr
               <li key={item.row.id} className="border-b border-line/70 px-4 py-3">
                 <div className="flex items-start gap-3">
                   <div className="min-w-0 flex-1">
-                    <span className="font-display text-[11px] font-semibold tracking-widest text-amber uppercase">
+                    <span className="font-display text-[11px] font-semibold tracking-widest text-amber">
                       {item.row.equipo || "—"}
                     </span>
                     <p className="mt-0.5 text-sm leading-snug text-text">
@@ -225,14 +225,14 @@ export function OrderSheet({ order, open, onClose, rows, equipos }: OrderSheetPr
               <button
                 type="button"
                 onClick={copiar}
-                className="flex h-12 flex-1 items-center justify-center gap-2 bg-amber font-display text-sm font-bold tracking-widest text-ink uppercase transition-transform active:scale-[0.98]"
+                className="flex h-12 flex-1 items-center justify-center gap-2 bg-amber font-display text-sm font-bold tracking-widest text-ink transition-transform active:scale-[0.98]"
               >
                 <Copy className="size-4" /> Copiar lista
               </button>
               <button
                 type="button"
                 onClick={copiarSap}
-                className="flex h-12 flex-1 items-center justify-center gap-2 border border-line font-display text-sm font-bold tracking-widest text-text uppercase transition-colors active:scale-[0.98] hover:border-amber/60 hover:text-amber"
+                className="flex h-12 flex-1 items-center justify-center gap-2 border border-line font-display text-sm font-bold tracking-widest text-text transition-colors active:scale-[0.98] hover:border-amber/60 hover:text-amber"
               >
                 <Table2 className="size-4" /> Copiar SAP
               </button>
@@ -243,7 +243,7 @@ export function OrderSheet({ order, open, onClose, rows, equipos }: OrderSheetPr
               <button
                 type="button"
                 onClick={() => setCrearKit(true)}
-                className="flex h-12 flex-1 items-center justify-center gap-2 border border-line font-display text-sm font-bold tracking-widest text-text uppercase transition-colors active:scale-[0.98] hover:border-amber/60 hover:text-amber"
+                className="flex h-12 flex-1 items-center justify-center gap-2 border border-line font-display text-sm font-bold tracking-widest text-text transition-colors active:scale-[0.98] hover:border-amber/60 hover:text-amber"
               >
                 <Package className="size-4" /> Crear kit
               </button>
@@ -254,7 +254,7 @@ export function OrderSheet({ order, open, onClose, rows, equipos }: OrderSheetPr
                     clearQuantities();
                     onClose();
                   }}
-                  className="flex h-12 shrink-0 items-center gap-2 border border-warn px-4 font-display text-sm font-bold tracking-widest text-warn uppercase transition-transform active:scale-[0.98]"
+                  className="flex h-12 shrink-0 items-center gap-2 border border-warn px-4 font-display text-sm font-bold tracking-widest text-warn transition-transform active:scale-[0.98]"
                 >
                   <Trash2 className="size-4" /> Confirmar
                 </button>
@@ -297,7 +297,7 @@ export function OrderFab({ order, onOpen }: { order: Order; onOpen: () => void }
     >
       <ClipboardList className="size-5 shrink-0" />
       <span className="text-left">
-        <span className="block font-display text-[11px] leading-none font-bold tracking-widest uppercase">
+        <span className="block font-display text-[11px] leading-none font-bold tracking-widest">
           Ver pedido
         </span>
         <span className="num block text-sm leading-tight font-bold">
