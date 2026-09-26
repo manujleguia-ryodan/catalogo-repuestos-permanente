@@ -34,6 +34,24 @@ describe("kits compartidos", () => {
     });
   });
 
+  it("guarda siempre el mismo formato aunque llegue con mayúsculas mezcladas", () => {
+    const result = cleanSharedKitPayload({
+      ...valid,
+      codigo: "kit-834k-009",
+      trabajo: "  CAMBIO   DE   CUCHILLAS  ",
+      equipo: " 834k ",
+      items: [
+        { np: " 9-Z ", sap: " sap-2 ", descripcion: "Zeta", equipo: "834k", qty: 1 },
+        { np: " 2-A ", sap: "sap-1", descripcion: "Alfa", equipo: "834k", qty: 2 },
+      ],
+    });
+    expect(result?.codigo).toBe("KIT-834K-009");
+    expect(result?.trabajo).toBe("Cambio de cuchillas");
+    expect(result?.equipo).toBe("834K");
+    expect(result?.items.map((item) => item.np)).toEqual(["2-A", "9-Z"]);
+    expect(result?.items.map((item) => item.sap)).toEqual(["SAP-1", "SAP-2"]);
+  });
+
   it("rechaza kits sin identidad o sin repuestos válidos", () => {
     expect(cleanSharedKitPayload({ ...valid, trabajo: "" })).toBeNull();
     expect(cleanSharedKitPayload({ ...valid, items: [{ np: "", qty: 0 }] })).toEqual({

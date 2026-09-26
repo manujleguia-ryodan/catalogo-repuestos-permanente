@@ -52,6 +52,12 @@ export function normalizeEquipo(equipo: string): string {
   return equipo.trim().replace(/\s+/g, " ").toUpperCase();
 }
 
+/** Guarda los nombres de trabajo en formato oración, sin depender del teclado. */
+export function normalizeTrabajo(trabajo: string): string {
+  const limpio = trabajo.trim().replace(/\s+/g, " ").toLocaleLowerCase("es");
+  return limpio ? limpio.charAt(0).toLocaleUpperCase("es") + limpio.slice(1) : "";
+}
+
 function compareNp(a: string, b: string): number {
   return a.localeCompare(b, "es", { numeric: true, sensitivity: "base" });
 }
@@ -73,10 +79,10 @@ export function mergeKitItems(items: KitItem[]): KitItem[] {
       previo.qty = Math.min(MAX_QTY, previo.qty + qty);
     } else {
       porNp.set(np, {
-        np: item.np.trim(),
-        sap: (item.sap ?? "").trim(),
+        np: normalizeNp(item.np),
+        sap: normalizeNp(item.sap ?? ""),
         descripcion: (item.descripcion ?? "").trim(),
-        equipo: (item.equipo ?? "").trim(),
+        equipo: normalizeEquipo(item.equipo ?? ""),
         qty: Math.min(MAX_QTY, qty),
       });
     }
@@ -109,9 +115,9 @@ function sane(value: unknown): Kit | null {
   const equipo = typeof kit.equipo === "string" ? kit.equipo : "";
   return {
     id: kit.id,
-    codigo: kit.codigo,
-    trabajo: typeof kit.trabajo === "string" ? kit.trabajo : "",
-    equipo,
+    codigo: kit.codigo.trim().toUpperCase(),
+    trabajo: normalizeTrabajo(typeof kit.trabajo === "string" ? kit.trabajo : ""),
+    equipo: normalizeEquipo(equipo),
     items,
     fingerprint: kitFingerprint(equipo, items),
     creadoEn: typeof kit.creadoEn === "string" ? kit.creadoEn : new Date().toISOString(),
@@ -172,6 +178,16 @@ export function useKits(): Kit[] {
 
 export function getKits(): Kit[] {
   return cache;
+}
+
+/** Orden estable para mostrar kits igual en todos los dispositivos. */
+export function sortKits(kits: Kit[]): Kit[] {
+  return [...kits].sort((a, b) =>
+    a.equipo.localeCompare(b.equipo, "es", { numeric: true, sensitivity: "base" }) ||
+    a.codigo.localeCompare(b.codigo, "es", { numeric: true, sensitivity: "base" }) ||
+    (a.origen === "compartido" ? -1 : 1) ||
+    a.trabajo.localeCompare(b.trabajo, "es", { sensitivity: "base" }),
+  );
 }
 
 // --- código único -----------------------------------------------------------
@@ -274,7 +290,7 @@ export function createKit(draft: KitDraft, reservedKits: Kit[] = cache): CreateK
   const kit: Kit = {
     id: `kit_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`,
     codigo: nextKitCode(draft.equipo, reservedKits),
-    trabajo: draft.trabajo.trim(),
+    trabajo: normalizeTrabajo(draft.trabajo),
     equipo: normalizeEquipo(draft.equipo),
     items,
     fingerprint,
@@ -303,7 +319,7 @@ export function updateKit(id: string, draft: KitDraft): UpdateKitResult {
   if (existente) return { ok: false, motivo: "duplicado", kit: existente };
   const kit: Kit = {
     ...actual,
-    trabajo: draft.trabajo.trim(),
+    trabajo: normalizeTrabajo(draft.trabajo),
     equipo: normalizeEquipo(draft.equipo),
     items,
     fingerprint,

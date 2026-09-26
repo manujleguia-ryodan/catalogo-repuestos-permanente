@@ -13,7 +13,7 @@ import { useOnline } from "../hooks/use-online";
 import { normalize, timeAgo, writeLocalCatalog, type Part } from "../lib/offline-cache";
 import { useQuantities } from "../lib/qty-store";
 import { buildOrder } from "../lib/order-text";
-import { reconcileLocalKitCodes, useKits, type Kit } from "../lib/kit-store";
+import { reconcileLocalKitCodes, sortKits, useKits, type Kit } from "../lib/kit-store";
 import { applyKitToOrder } from "../lib/kit-order";
 import { useSharedKits } from "../queries/shared-kits";
 
@@ -32,7 +32,7 @@ function Index() {
   const cantidades = useQuantities();
   const kits = useKits();
   const shared = useSharedKits();
-  const todosLosKits = useMemo(() => [...(shared.data?.kits ?? []), ...kits], [shared.data?.kits, kits]);
+  const todosLosKits = useMemo(() => sortKits([...(shared.data?.kits ?? []), ...kits]), [shared.data?.kits, kits]);
 
   useEffect(() => {
     if (shared.data?.kits) reconcileLocalKitCodes(shared.data.kits.map((kit) => kit.codigo));

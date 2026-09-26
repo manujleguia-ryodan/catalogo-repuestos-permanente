@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { Package, Search, X } from "lucide-react";
-import type { Kit } from "../lib/kit-store";
+import { sortKits, type Kit } from "../lib/kit-store";
 import { KitCard } from "./kit-card";
 
 /**
@@ -18,27 +18,28 @@ export function KitList({
   const [equipo, setEquipo] = useState("TODOS LOS EQUIPOS");
   const [busqueda, setBusqueda] = useState("");
   const [origen, setOrigen] = useState<"todos" | "compartido" | "local">("todos");
+  const ordenados = useMemo(() => sortKits(kits), [kits]);
 
   const equipos = useMemo(() => {
     const set = new Set<string>();
-    for (const kit of kits) if (kit.equipo) set.add(kit.equipo);
+    for (const kit of ordenados) if (kit.equipo) set.add(kit.equipo);
     return ["TODOS LOS EQUIPOS", ...Array.from(set).sort()];
-  }, [kits]);
+  }, [ordenados]);
 
   const visibles = useMemo(() => {
     const needle = busqueda.trim().toLocaleLowerCase();
-    return kits.filter((kit) => {
+    return ordenados.filter((kit) => {
       if (equipo !== "TODOS LOS EQUIPOS" && kit.equipo !== equipo) return false;
       if (origen !== "todos" && kit.origen !== origen) return false;
       if (!needle) return true;
       const contenido = [kit.codigo, kit.trabajo, kit.equipo, ...kit.items.flatMap((item) => [item.np, item.sap, item.descripcion])].join(" ").toLocaleLowerCase();
       return contenido.includes(needle);
     });
-  }, [kits, equipo, busqueda, origen]);
+  }, [ordenados, equipo, busqueda, origen]);
 
   return (
     <div className="px-4 pb-6">
-      {kits.length > 0 && (
+      {ordenados.length > 0 && (
         <>
         <div className="mt-3 flex items-center gap-2 border border-line bg-surface px-3 focus-within:border-amber/60">
           <Search className="size-4 shrink-0 text-muted" />
@@ -71,10 +72,10 @@ export function KitList({
       )}
 
       <p className="label-xs pb-2">
-        {visibles.length} de {kits.length} {kits.length === 1 ? "kit" : "kits"}
+        {visibles.length} de {ordenados.length} {ordenados.length === 1 ? "kit" : "kits"}
       </p>
 
-      {kits.length === 0 ? (
+      {ordenados.length === 0 ? (
         <div className="border border-dashed border-line px-4 py-10 text-center">
           <Package className="mx-auto size-6 text-muted" />
           <p className="mt-2 text-sm text-text">Todavía no hay kits guardados.</p>

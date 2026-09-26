@@ -12,16 +12,16 @@ export function KitCard({
   onAdd: (kit: Kit) => void;
 }) {
   return (
-    <div className="panel flex flex-col overflow-hidden rounded-lg transition-colors hover:border-amber/50">
+    <div className="panel flex flex-col overflow-hidden rounded-lg transition duration-150 ease-out hover:-translate-y-0.5 hover:border-amber/50 hover:shadow-lg hover:shadow-black/20 motion-reduce:transform-none">
       <button
         type="button"
         onClick={() => onOpen(kit)}
         aria-label={`Abrir kit ${kit.codigo}`}
-        className="flex-1 px-4 pt-4 pb-3 text-left"
+        className="group flex-1 px-4 pt-4 pb-3 text-left"
       >
         <div className="flex items-center gap-2">
           <Package className="size-3.5 shrink-0 text-amber" />
-          <span className="num font-display text-[11px] leading-none font-bold tracking-widest text-amber">
+          <span className="num font-display text-[11px] leading-none font-bold tracking-widest text-amber transition-colors group-hover:text-amber/80">
             {kit.codigo}
           </span>
           {kit.origen === "compartido" && <Cloud className="size-3 text-ok" aria-label="Kit compartido" />}

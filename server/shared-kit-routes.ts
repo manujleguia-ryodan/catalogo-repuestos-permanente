@@ -20,6 +20,15 @@ type KitPayload = {
   items: KitItem[];
 };
 
+function normalizeEquipo(value: string): string {
+  return value.trim().replace(/\s+/g, " ").toUpperCase();
+}
+
+function normalizeTrabajo(value: string): string {
+  const limpio = value.trim().replace(/\s+/g, " ").toLocaleLowerCase("es");
+  return limpio ? limpio.charAt(0).toLocaleUpperCase("es") + limpio.slice(1) : "";
+}
+
 export function cleanSharedKitPayload(value: unknown): KitPayload | null {
   if (!value || typeof value !== "object") return null;
   const input = value as Partial<KitPayload>;
@@ -41,7 +50,7 @@ export function cleanSharedKitPayload(value: unknown): KitPayload | null {
     return typeof candidate.np === "string" && Number.isFinite(Number(candidate.qty)) && Number(candidate.qty) > 0;
   }).map((item) => ({
     np: item.np.trim(),
-    sap: typeof item.sap === "string" ? item.sap.trim() : "",
+    sap: typeof item.sap === "string" ? item.sap.replace(/\s+/g, "").toUpperCase() : "",
     descripcion: typeof item.descripcion === "string" ? item.descripcion.trim() : "",
     equipo: typeof item.equipo === "string" ? item.equipo.trim() : "",
     qty: Math.trunc(Number(item.qty)),
@@ -49,21 +58,27 @@ export function cleanSharedKitPayload(value: unknown): KitPayload | null {
 
   return {
     id: typeof input.id === "string" ? input.id : undefined,
-    codigo: input.codigo.trim(),
-    trabajo: input.trabajo.trim(),
-    equipo: input.equipo.trim(),
+    codigo: input.codigo.trim().toUpperCase(),
+    trabajo: normalizeTrabajo(input.trabajo),
+    equipo: normalizeEquipo(input.equipo),
     fingerprint: input.fingerprint.trim(),
-    items,
+    items: items.sort((a, b) => a.np.replace(/\s+/g, "").localeCompare(b.np.replace(/\s+/g, ""), "es", { numeric: true, sensitivity: "base" })),
   };
 }
 
 function serialize(row: typeof sharedKits.$inferSelect) {
-  const items = JSON.parse(row.items) as KitItem[];
+  const items = (JSON.parse(row.items) as KitItem[]).map((item) => ({
+    ...item,
+    np: item.np.replace(/\s+/g, "").toUpperCase(),
+    sap: item.sap.replace(/\s+/g, "").toUpperCase(),
+    descripcion: item.descripcion.trim(),
+    equipo: normalizeEquipo(item.equipo),
+  })).sort((a, b) => a.np.localeCompare(b.np, "es", { numeric: true, sensitivity: "base" }));
   return {
     id: row.id,
-    codigo: row.codigo,
-    trabajo: row.trabajo,
-    equipo: row.equipo,
+    codigo: row.codigo.toUpperCase(),
+    trabajo: normalizeTrabajo(row.trabajo),
+    equipo: normalizeEquipo(row.equipo),
     fingerprint: componentFingerprint(items),
     items,
     creadoEn: row.createdAt.toISOString(),
