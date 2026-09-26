@@ -192,6 +192,33 @@ export function nextKitCode(equipo: string, kits: Kit[] = cache): string {
   return `${prefijo}${String(siguiente).padStart(3, "0")}`;
 }
 
+/**
+ * Reubica códigos locales que chocan con kits compartidos o entre sí.
+ * El contenido del kit no cambia; solo se actualiza el código visible.
+ */
+export function reconcileLocalKitCodes(sharedCodes: string[]): boolean {
+  const used = new Set(sharedCodes);
+  const next = cache.map((kit) => {
+    if (!used.has(kit.codigo)) {
+      used.add(kit.codigo);
+      return kit;
+    }
+    const slug = normalizeEquipo(kit.equipo).replace(/[^A-Z0-9]/g, "") || "GEN";
+    const prefix = `KIT-${slug}-`;
+    let number = 1;
+    let codigo = `${prefix}${String(number).padStart(3, "0")}`;
+    while (used.has(codigo)) {
+      number += 1;
+      codigo = `${prefix}${String(number).padStart(3, "0")}`;
+    }
+    used.add(codigo);
+    return { ...kit, codigo, actualizadoEn: new Date().toISOString() };
+  });
+  const changed = next.some((kit, index) => kit.codigo !== cache[index]?.codigo);
+  if (changed) commit(next);
+  return changed;
+}
+
 // --- validación -------------------------------------------------------------
 
 export interface KitDraft {
@@ -234,7 +261,7 @@ export type CreateKitResult =
  * Crea el kit si no existe ya ese conjunto (equipo + N/P + cantidades).
  * Si existe, NO crea nada y devuelve el kit que ya lo cubre.
  */
-export function createKit(draft: KitDraft): CreateKitResult {
+export function createKit(draft: KitDraft, reservedKits: Kit[] = cache): CreateKitResult {
   const errores = validateKit(draft);
   if (errores.length > 0) return { ok: false, motivo: "invalido", errores };
 
@@ -246,7 +273,7 @@ export function createKit(draft: KitDraft): CreateKitResult {
   const ahora = new Date().toISOString();
   const kit: Kit = {
     id: `kit_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`,
-    codigo: nextKitCode(draft.equipo),
+    codigo: nextKitCode(draft.equipo, reservedKits),
     trabajo: draft.trabajo.trim(),
     equipo: normalizeEquipo(draft.equipo),
     items,

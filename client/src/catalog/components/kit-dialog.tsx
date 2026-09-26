@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { AlertTriangle, Check, Cloud, Package, X } from "lucide-react";
 import type { Part } from "../lib/offline-cache";
 import type { Order } from "../lib/order-text";
-import { createKit, findKitByFingerprint, kitFingerprint, nextKitCode, validateKit, type Kit } from "../lib/kit-store";
+import { createKit, findKitByFingerprint, getKits, kitFingerprint, nextKitCode, validateKit, type Kit } from "../lib/kit-store";
 import { applyKitToOrder, dominantEquipo, orderToKitItems } from "../lib/kit-order";
 import { recordUsage } from "../lib/usage-store";
 import { clearQuantities, getQuantities, restoreQuantities, type QtyMap } from "../lib/qty-store";
@@ -111,7 +111,7 @@ export function KitDialog({ open, order, rows, equipos, onClose }: KitDialogProp
       return;
     }
 
-    const resultado = createKit({ trabajo, equipo, items });
+    const resultado = createKit({ trabajo, equipo, items }, [...getKits(), ...(sharedKits.data?.kits ?? [])]);
     if (resultado.ok) {
       recordUsage(items.map((item) => item.np));
       // El kit ya guarda los repuestos: la lista de pedido queda en 0
@@ -242,7 +242,7 @@ export function KitDialog({ open, order, rows, equipos, onClose }: KitDialogProp
 
               {equipo && !duplicado && !compartido && (
                 <p className="num mt-2 text-[11px] text-muted">
-                  Código que recibirá: <span className="text-amber">{nextKitCode(equipo)}</span>
+                  Código que recibirá: <span className="text-amber">{nextKitCode(equipo, [...getKits(), ...(sharedKits.data?.kits ?? [])])}</span>
                 </p>
               )}
 
