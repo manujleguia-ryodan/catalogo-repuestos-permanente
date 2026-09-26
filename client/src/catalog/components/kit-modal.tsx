@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
-import { AlertTriangle, Check, Plus, Table2, Trash2, X } from "lucide-react";
+import { AlertTriangle, Check, Cloud, Pencil, Plus, Table2, Trash2, X } from "lucide-react";
 import type { Part } from "../lib/offline-cache";
 import { deleteKit, kitUnits, type Kit } from "../lib/kit-store";
 import { applyKitToOrder, findRowByNp } from "../lib/kit-order";
 import { itemsToSapText } from "../lib/order-text";
 import { recordUsage } from "../lib/usage-store";
+import { KitEditDialog } from "./kit-edit-dialog";
+import { useSharedKitActions } from "../queries/shared-kits";
 
 function fecha(iso: string): string {
   const valor = new Date(iso);
@@ -16,18 +18,23 @@ function fecha(iso: string): string {
 export function KitModal({
   kit,
   rows,
+  equipos,
   onClose,
 }: {
   kit: Kit | null;
   rows: Part[];
+  equipos: string[];
   onClose: () => void;
 }) {
   const [aviso, setAviso] = useState<string | null>(null);
   const [confirmar, setConfirmar] = useState(false);
+  const [editar, setEditar] = useState(false);
+  const sharedActions = useSharedKitActions();
 
   useEffect(() => {
     setAviso(null);
     setConfirmar(false);
+    setEditar(false);
   }, [kit?.id]);
 
   useEffect(() => {
@@ -88,7 +95,7 @@ export function KitModal({
         aria-label={`Kit ${kit.codigo}`}
         className="relative m-0 flex max-h-[86dvh] w-full max-w-[480px] flex-col border border-amber/40 bg-ink"
       >
-        <div className="flex items-start gap-2 border-b border-line px-3 py-2">
+          <div className="flex items-start gap-2 border-b border-line px-3 py-2">
           <div className="min-w-0 flex-1">
             <span className="num font-display text-[10px] leading-none font-bold tracking-widest text-amber uppercase">
               {kit.codigo}
@@ -99,6 +106,10 @@ export function KitModal({
             <p className="num mt-1 text-[11px] text-muted">
               {kit.equipo || "—"} · {kit.items.length} repuestos · {kitUnits(kit)} u · creado{" "}
               {fecha(kit.creadoEn)}
+            </p>
+            <p className="mt-1 flex items-center gap-1 text-[10px] font-display tracking-widest text-muted uppercase">
+              {kit.origen === "compartido" && <Cloud className="size-3 text-ok" />}
+              {kit.origen === "compartido" ? "Compartido" : "Este dispositivo"}
             </p>
           </div>
           <button
@@ -158,6 +169,13 @@ export function KitModal({
               </button>
               <button
                 type="button"
+                onClick={() => setEditar(true)}
+                className="flex h-12 items-center justify-center gap-2 border border-line px-2 font-display text-xs font-bold tracking-widest text-text uppercase transition-colors active:scale-[0.98] hover:border-amber/60 hover:text-amber"
+              >
+                <Pencil className="size-4" /> Editar
+              </button>
+              <button
+                type="button"
                 onClick={copiarSap}
                 className="flex h-12 items-center justify-center gap-2 border border-line px-2 font-display text-xs font-bold tracking-widest text-text uppercase transition-colors active:scale-[0.98] hover:border-amber/60 hover:text-amber"
               >
@@ -167,13 +185,14 @@ export function KitModal({
             {confirmar ? (
               <button
                 type="button"
-                onClick={() => {
-                  deleteKit(kit.id);
+                onClick={async () => {
+                  if (kit.origen === "compartido") await sharedActions.remove.mutateAsync(kit.id);
+                  else deleteKit(kit.id);
                   onClose();
                 }}
                 className="flex h-12 shrink-0 items-center gap-2 border border-warn px-3 font-display text-sm font-bold tracking-widest text-warn uppercase transition-transform active:scale-[0.98]"
               >
-                <Trash2 className="size-4" /> Borrar
+                <Trash2 className="size-4" /> {sharedActions.remove.isPending ? "Borrando…" : "Borrar"}
               </button>
             ) : (
               <button
@@ -188,6 +207,7 @@ export function KitModal({
           </div>
         </div>
       </dialog>
+      <KitEditDialog kit={editar ? kit : null} rows={rows} equipos={equipos} onClose={() => setEditar(false)} />
     </div>
   );
 }

@@ -25,4 +25,17 @@ export const users = mysqlTable("users", {
 export type User = typeof users.$inferSelect;
 export type InsertUser = typeof users.$inferInsert;
 
-// TODO: Add your tables here
+/** Kits visibles para todos los usuarios del catálogo. */
+export const sharedKits = mysqlTable("shared_kits", {
+  id: varchar("id", { length: 80 }).primaryKey(),
+  codigo: varchar("codigo", { length: 80 }).notNull().unique(),
+  trabajo: varchar("trabajo", { length: 160 }).notNull(),
+  equipo: varchar("equipo", { length: 80 }).notNull(),
+  fingerprint: varchar("fingerprint", { length: 1000 }).notNull().unique(),
+  items: text("items").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type SharedKit = typeof sharedKits.$inferSelect;
+export type InsertSharedKit = typeof sharedKits.$inferInsert;

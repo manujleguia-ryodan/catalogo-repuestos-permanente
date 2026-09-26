@@ -15,6 +15,7 @@ import { useQuantities } from "../lib/qty-store";
 import { buildOrder } from "../lib/order-text";
 import { useKits, type Kit } from "../lib/kit-store";
 import { applyKitToOrder } from "../lib/kit-order";
+import { useSharedKits } from "../queries/shared-kits";
 
 function Index() {
   const [term, setTerm] = useState("");
@@ -30,6 +31,8 @@ function Index() {
   const refresh = useRefreshCatalog();
   const cantidades = useQuantities();
   const kits = useKits();
+  const shared = useSharedKits();
+  const todosLosKits = useMemo(() => [...(shared.data?.kits ?? []), ...kits], [shared.data?.kits, kits]);
 
   // Cada respuesta del servidor se guarda como copia local del dispositivo.
   useEffect(() => {
@@ -192,7 +195,7 @@ function Index() {
 
       <main className="mx-auto w-full max-w-[780px] flex-1 overflow-y-auto overscroll-contain px-0 pb-28">
         {tab === "kits" ? (
-          <KitList kits={kits} onOpenKit={setKitAbierto} onAddKit={agregarKit} />
+        <KitList kits={todosLosKits} onOpenKit={setKitAbierto} onAddKit={agregarKit} />
         ) : (
         <>
         <div className="flex items-baseline justify-between px-4 py-3">
@@ -221,7 +224,7 @@ function Index() {
         ) : estadoInicial ? (
           <HomePanel
             rows={rows}
-            kits={kits}
+            kits={todosLosKits}
             onOpenKit={setKitAbierto}
             onAddKit={agregarKit}
             onOpenPart={setDetalle}
@@ -282,7 +285,7 @@ function Index() {
         equipos={equipos}
       />
       <PartModal part={detalle} onClose={() => setDetalle(null)} />
-      <KitModal kit={kitAbierto} rows={rows} onClose={() => setKitAbierto(null)} />
+      <KitModal kit={kitAbierto} rows={rows} equipos={equipos} onClose={() => setKitAbierto(null)} />
     </div>
   );
 }

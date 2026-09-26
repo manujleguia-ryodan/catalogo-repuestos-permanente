@@ -1,11 +1,12 @@
 import { useEffect, useMemo, useState } from "react";
-import { AlertTriangle, Check, Package, X } from "lucide-react";
+import { AlertTriangle, Check, Cloud, Package, X } from "lucide-react";
 import type { Part } from "../lib/offline-cache";
 import type { Order } from "../lib/order-text";
 import { createKit, kitFingerprint, nextKitCode, validateKit, type Kit } from "../lib/kit-store";
 import { applyKitToOrder, dominantEquipo, orderToKitItems } from "../lib/kit-order";
 import { recordUsage } from "../lib/usage-store";
 import { clearQuantities, getQuantities, restoreQuantities, type QtyMap } from "../lib/qty-store";
+import { useSharedKitActions } from "../queries/shared-kits";
 
 interface KitDialogProps {
   open: boolean;
@@ -29,6 +30,8 @@ export function KitDialog({ open, order, rows, equipos, onClose }: KitDialogProp
   const [creado, setCreado] = useState<Kit | null>(null);
   /** Cantidades de antes de guardar, por si el usuario quiere recuperarlas. */
   const [previo, setPrevio] = useState<QtyMap | null>(null);
+  const [compartido, setCompartido] = useState(true);
+  const sharedActions = useSharedKitActions();
 
   const items = useMemo(() => orderToKitItems(order), [order]);
 
@@ -40,6 +43,7 @@ export function KitDialog({ open, order, rows, equipos, onClose }: KitDialogProp
     setDuplicado(null);
     setCreado(null);
     setPrevio(null);
+    setCompartido(true);
     // Solo al abrir: escribir en el formulario no debe reiniciarlo.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open]);
@@ -66,7 +70,33 @@ export function KitDialog({ open, order, rows, equipos, onClose }: KitDialogProp
   const unidades = items.reduce((total, item) => total + item.qty, 0);
   const opciones = equipos.filter((item) => item !== "TODOS LOS EQUIPOS" && item !== "TODOS");
 
-  const guardar = () => {
+  const guardar = async () => {
+    if (compartido) {
+      const ahora = new Date().toISOString();
+      const codigo = `KIT-${equipo.replace(/[^A-Za-z0-9]/g, "").toUpperCase() || "GEN"}-${Date.now().toString(36).slice(-5).toUpperCase()}`;
+      try {
+        const response = await sharedActions.create.mutateAsync({
+          id: `shared_${Date.now().toString(36)}`,
+          codigo,
+          trabajo: trabajo.trim(),
+          equipo,
+          items,
+          fingerprint: kitFingerprint(equipo, items),
+          creadoEn: ahora,
+          actualizadoEn: ahora,
+        });
+        if (!response.kit) throw new Error("Kit no recibido");
+        recordUsage(items.map((item) => item.np));
+        setPrevio(getQuantities());
+        clearQuantities();
+        setCreado(response.kit);
+        setDuplicado(null);
+      } catch {
+        setDuplicado(null);
+      }
+      return;
+    }
+
     const resultado = createKit({ trabajo, equipo, items });
     if (resultado.ok) {
       recordUsage(items.map((item) => item.np));
@@ -180,7 +210,23 @@ export function KitDialog({ open, order, rows, equipos, onClose }: KitDialogProp
                 </select>
               </label>
 
-              {equipo && !duplicado && (
+              <label className="mt-3 flex items-start gap-2 border border-line bg-surface px-3 py-2.5">
+                <input
+                  type="checkbox"
+                  checked={compartido}
+                  onChange={(event) => setCompartido(event.target.checked)}
+                  className="mt-0.5 accent-amber"
+                />
+                <span className="flex items-start gap-1.5 text-xs text-text">
+                  <Cloud className="mt-0.5 size-3.5 shrink-0 text-ok" />
+                  <span>
+                    <strong>Compartir este kit</strong>
+                    <span className="mt-0.5 block text-muted">Todos los usuarios podrán verlo, cargarlo y editarlo.</span>
+                  </span>
+                </span>
+              </label>
+
+              {equipo && !duplicado && !compartido && (
                 <p className="num mt-2 text-[11px] text-muted">
                   Código que recibirá: <span className="text-amber">{nextKitCode(equipo)}</span>
                 </p>
@@ -249,10 +295,10 @@ export function KitDialog({ open, order, rows, equipos, onClose }: KitDialogProp
             <button
               type="button"
               onClick={guardar}
-              disabled={!valido || duplicado !== null}
+              disabled={!valido || duplicado !== null || sharedActions.create.isPending}
               className="flex h-12 w-full items-center justify-center gap-2 bg-amber font-display text-sm font-bold tracking-widest text-ink uppercase transition-transform active:scale-[0.98] disabled:cursor-not-allowed disabled:bg-surface-2 disabled:text-muted"
             >
-              <Package className="size-4" /> Guardar kit
+              <Package className="size-4" /> {sharedActions.create.isPending ? "Guardando…" : "Guardar kit"}
             </button>
           )}
         </div>

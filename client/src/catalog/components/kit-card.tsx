@@ -1,4 +1,4 @@
-import { Package, Plus } from "lucide-react";
+import { Cloud, Package, Plus } from "lucide-react";
 import { kitUnits, type Kit } from "../lib/kit-store";
 
 /** Tarjeta de kit: código, trabajo, equipo, cuántos tipos de repuesto lleva. */
@@ -24,6 +24,7 @@ export function KitCard({
           <span className="num font-display text-[11px] leading-none font-bold tracking-widest text-amber uppercase">
             {kit.codigo}
           </span>
+          {kit.origen === "compartido" && <Cloud className="size-3 text-ok" aria-label="Kit compartido" />}
         </div>
         <p className="mt-1.5 line-clamp-2 text-sm leading-snug text-text">
           {kit.trabajo || "Sin nombre"}
@@ -31,6 +32,9 @@ export function KitCard({
         <p className="num mt-1.5 text-[11px] text-muted">
           {kit.equipo || "—"} · {kit.items.length}{" "}
           {kit.items.length === 1 ? "repuesto" : "repuestos"} · {kitUnits(kit)} u
+        </p>
+        <p className="mt-1 text-[10px] font-display tracking-widest text-muted uppercase">
+          {kit.origen === "compartido" ? "Compartido" : "Este dispositivo"}
         </p>
       </button>
 

@@ -36,6 +36,7 @@ export interface Kit {
   fingerprint: string;
   creadoEn: string;
   actualizadoEn: string;
+  origen: "local" | "compartido";
 }
 
 /**
@@ -116,6 +117,7 @@ function sane(value: unknown): Kit | null {
     fingerprint: typeof kit.fingerprint === "string" ? kit.fingerprint : kitFingerprint(equipo, items),
     creadoEn: typeof kit.creadoEn === "string" ? kit.creadoEn : new Date().toISOString(),
     actualizadoEn: typeof kit.actualizadoEn === "string" ? kit.actualizadoEn : new Date().toISOString(),
+    origen: kit.origen === "compartido" ? "compartido" : "local",
   };
 }
 
@@ -252,8 +254,37 @@ export function createKit(draft: KitDraft): CreateKitResult {
     fingerprint,
     creadoEn: ahora,
     actualizadoEn: ahora,
+    origen: "local",
   };
   commit([kit, ...cache]);
+  return { ok: true, kit };
+}
+
+export type UpdateKitResult =
+  | { ok: true; kit: Kit }
+  | { ok: false; motivo: "duplicado"; kit: Kit }
+  | { ok: false; motivo: "invalido"; errores: string[] };
+
+/** Actualiza un kit local manteniendo su código e identidad. */
+export function updateKit(id: string, draft: KitDraft): UpdateKitResult {
+  const errores = validateKit(draft);
+  if (errores.length > 0) return { ok: false, motivo: "invalido", errores };
+  const actual = cache.find((kit) => kit.id === id);
+  if (!actual) return { ok: false, motivo: "invalido", errores: ["El kit ya no existe en este dispositivo."] };
+  const items = mergeKitItems(draft.items);
+  const fingerprint = kitFingerprint(draft.equipo, items);
+  const existente = cache.find((kit) => kit.id !== id && kit.fingerprint === fingerprint);
+  if (existente) return { ok: false, motivo: "duplicado", kit: existente };
+  const kit: Kit = {
+    ...actual,
+    trabajo: draft.trabajo.trim(),
+    equipo: normalizeEquipo(draft.equipo),
+    items,
+    fingerprint,
+    actualizadoEn: new Date().toISOString(),
+    origen: "local",
+  };
+  commit(cache.map((item) => (item.id === id ? kit : item)));
   return { ok: true, kit };
 }
 
