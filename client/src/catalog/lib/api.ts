@@ -4,13 +4,23 @@ import type { Kit } from "./kit-store";
 export type CatalogResponse = CatalogData & { synced?: boolean; error?: string | null };
 export type SharedKitsResponse = { kits: Kit[]; available: boolean };
 
+export class ApiRequestError extends Error {
+  constructor(public status: number, public data: unknown) {
+    super(typeof data === "object" && data && "error" in data && typeof data.error === "string" ? data.error : `Error del servidor (${status})`);
+  }
+}
+
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
   const response = await fetch(path, {
     ...init,
     headers: { "Content-Type": "application/json", ...(init?.headers ?? {}) },
     credentials: "same-origin",
   });
-  if (!response.ok) throw new Error(`Error del servidor (${response.status})`);
+  if (!response.ok) {
+    let data: unknown = null;
+    try { data = await response.json(); } catch { /* respuesta sin JSON */ }
+    throw new ApiRequestError(response.status, data);
+  }
   return (await response.json()) as T;
 }
 

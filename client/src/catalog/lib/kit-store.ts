@@ -32,7 +32,7 @@ export interface Kit {
   trabajo: string;
   equipo: string;
   items: KitItem[];
-  /** Huella determinística: EQUIPO|N/P:cantidad|... ordenado por N/P. */
+  /** Huella determinística del conjunto de componentes, ordenado por N/P. */
   fingerprint: string;
   creadoEn: string;
   actualizadoEn: string;
@@ -85,17 +85,16 @@ export function mergeKitItems(items: KitItem[]): KitItem[] {
 }
 
 /**
- * Huella de un kit: EQUIPO + N/P + cantidad, y nada más.
+ * Huella de un kit: solo el conjunto de N/P, y nada más.
  *
- * No entran el nombre del trabajo, la descripción, el SAP ni el orden en que
- * se agregaron los repuestos: dos kits con los mismos repuestos y cantidades
- * para el mismo equipo son EL MISMO KIT aunque se llamen distinto.
+ * No entran el nombre, equipo, descripción, SAP, cantidades ni el orden:
+ * dos kits con los mismos componentes son EL MISMO KIT aunque se llamen
+ * distinto o tengan cantidades diferentes.
  *
- *   395DL|123456:2|555555:1|789012:4
+ *   123456|555555|789012
  */
 export function kitFingerprint(equipo: string, items: KitItem[]): string {
-  const partes = mergeKitItems(items).map((item) => `${normalizeNp(item.np)}:${item.qty}`);
-  return [normalizeEquipo(equipo), ...partes].join("|");
+  return mergeKitItems(items).map((item) => normalizeNp(item.np)).join("|");
 }
 
 // --- almacenamiento ---------------------------------------------------------
@@ -114,7 +113,7 @@ function sane(value: unknown): Kit | null {
     trabajo: typeof kit.trabajo === "string" ? kit.trabajo : "",
     equipo,
     items,
-    fingerprint: typeof kit.fingerprint === "string" ? kit.fingerprint : kitFingerprint(equipo, items),
+    fingerprint: kitFingerprint(equipo, items),
     creadoEn: typeof kit.creadoEn === "string" ? kit.creadoEn : new Date().toISOString(),
     actualizadoEn: typeof kit.actualizadoEn === "string" ? kit.actualizadoEn : new Date().toISOString(),
     origen: kit.origen === "compartido" ? "compartido" : "local",

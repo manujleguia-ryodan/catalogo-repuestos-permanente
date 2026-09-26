@@ -10,6 +10,7 @@ import {
   type KitItem,
 } from "../lib/kit-store";
 import { useSharedKitActions } from "../queries/shared-kits";
+import { ApiRequestError } from "../lib/api";
 
 export function KitEditDialog({
   kit,
@@ -74,8 +75,13 @@ export function KitEditDialog({
       try {
         await sharedActions.update.mutateAsync(payload);
         onClose();
-      } catch {
-        setAviso("No se pudo guardar el kit compartido. Revisa tu conexión e inténtalo otra vez.");
+      } catch (error) {
+        if (error instanceof ApiRequestError && typeof error.data === "object" && error.data && "kit" in error.data) {
+          const existente = (error.data as { kit: Kit }).kit;
+          setAviso(`No se guardó: los mismos componentes ya están en ${existente.codigo}.`);
+        } else {
+          setAviso("No se pudo guardar el kit compartido. Revisa tu conexión e inténtalo otra vez.");
+        }
       }
       return;
     }

@@ -2,11 +2,13 @@ import { useEffect, useMemo, useState } from "react";
 import { AlertTriangle, Check, Cloud, Package, X } from "lucide-react";
 import type { Part } from "../lib/offline-cache";
 import type { Order } from "../lib/order-text";
-import { createKit, kitFingerprint, nextKitCode, validateKit, type Kit } from "../lib/kit-store";
+import { createKit, findKitByFingerprint, kitFingerprint, nextKitCode, validateKit, type Kit } from "../lib/kit-store";
 import { applyKitToOrder, dominantEquipo, orderToKitItems } from "../lib/kit-order";
 import { recordUsage } from "../lib/usage-store";
 import { clearQuantities, getQuantities, restoreQuantities, type QtyMap } from "../lib/qty-store";
 import { useSharedKitActions } from "../queries/shared-kits";
+import { useSharedKits } from "../queries/shared-kits";
+import { ApiRequestError } from "../lib/api";
 
 interface KitDialogProps {
   open: boolean;
@@ -32,6 +34,7 @@ export function KitDialog({ open, order, rows, equipos, onClose }: KitDialogProp
   const [previo, setPrevio] = useState<QtyMap | null>(null);
   const [compartido, setCompartido] = useState(true);
   const sharedActions = useSharedKitActions();
+  const sharedKits = useSharedKits();
 
   const items = useMemo(() => orderToKitItems(order), [order]);
 
@@ -71,6 +74,13 @@ export function KitDialog({ open, order, rows, equipos, onClose }: KitDialogProp
   const opciones = equipos.filter((item) => item !== "TODOS LOS EQUIPOS" && item !== "TODOS");
 
   const guardar = async () => {
+    const fingerprint = kitFingerprint(equipo, items);
+    const localDuplicate = findKitByFingerprint(fingerprint);
+    const sharedDuplicate = sharedKits.data?.kits.find((kit) => kit.fingerprint === fingerprint);
+    if (localDuplicate || sharedDuplicate) {
+      setDuplicado(localDuplicate ?? sharedDuplicate ?? null);
+      return;
+    }
     if (compartido) {
       const ahora = new Date().toISOString();
       const codigo = `KIT-${equipo.replace(/[^A-Za-z0-9]/g, "").toUpperCase() || "GEN"}-${Date.now().toString(36).slice(-5).toUpperCase()}`;
@@ -81,7 +91,7 @@ export function KitDialog({ open, order, rows, equipos, onClose }: KitDialogProp
           trabajo: trabajo.trim(),
           equipo,
           items,
-          fingerprint: kitFingerprint(equipo, items),
+          fingerprint,
           creadoEn: ahora,
           actualizadoEn: ahora,
         });
@@ -91,8 +101,12 @@ export function KitDialog({ open, order, rows, equipos, onClose }: KitDialogProp
         clearQuantities();
         setCreado(response.kit);
         setDuplicado(null);
-      } catch {
-        setDuplicado(null);
+      } catch (error) {
+        if (error instanceof ApiRequestError && typeof error.data === "object" && error.data && "kit" in error.data) {
+          setDuplicado((error.data as { kit: Kit }).kit);
+        } else {
+          setDuplicado(null);
+        }
       }
       return;
     }

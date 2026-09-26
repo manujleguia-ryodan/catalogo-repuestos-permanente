@@ -58,17 +58,22 @@ export function cleanSharedKitPayload(value: unknown): KitPayload | null {
 }
 
 function serialize(row: typeof sharedKits.$inferSelect) {
+  const items = JSON.parse(row.items) as KitItem[];
   return {
     id: row.id,
     codigo: row.codigo,
     trabajo: row.trabajo,
     equipo: row.equipo,
-    fingerprint: row.fingerprint,
-    items: JSON.parse(row.items) as KitItem[],
+    fingerprint: componentFingerprint(items),
+    items,
     creadoEn: row.createdAt.toISOString(),
     actualizadoEn: row.updatedAt.toISOString(),
     origen: "compartido" as const,
   };
+}
+
+function componentFingerprint(items: KitItem[]): string {
+  return items.map((item) => item.np.replace(/\s+/g, "").toUpperCase()).filter(Boolean).sort().join("|");
 }
 
 function makeId(): string {
@@ -88,13 +93,17 @@ export function registerSharedKitRoutes(app: Express) {
     const payload = cleanSharedKitPayload(req.body);
     if (!db) return res.status(503).json({ error: "Base de datos no disponible" });
     if (!payload || payload.items.length === 0) return res.status(400).json({ error: "Kit inválido" });
+    const canonical = componentFingerprint(payload.items);
+    const rows = await db.select().from(sharedKits);
+    const duplicado = rows.find((row) => componentFingerprint(JSON.parse(row.items) as KitItem[]) === canonical);
+    if (duplicado) return res.status(409).json({ error: "Ya existe un kit con los mismos componentes", kit: serialize(duplicado) });
     const id = makeId();
     await db.insert(sharedKits).values({
       id,
       codigo: payload.codigo,
       trabajo: payload.trabajo,
       equipo: payload.equipo,
-      fingerprint: payload.fingerprint,
+      fingerprint: canonical,
       items: JSON.stringify(payload.items),
     });
     const [row] = await db.select().from(sharedKits).where(eq(sharedKits.id, id)).limit(1);
@@ -106,11 +115,15 @@ export function registerSharedKitRoutes(app: Express) {
     const payload = cleanSharedKitPayload(req.body);
     if (!db) return res.status(503).json({ error: "Base de datos no disponible" });
     if (!payload || payload.items.length === 0) return res.status(400).json({ error: "Kit inválido" });
+    const canonical = componentFingerprint(payload.items);
+    const rows = await db.select().from(sharedKits);
+    const duplicado = rows.find((row) => row.id !== req.params.id && componentFingerprint(JSON.parse(row.items) as KitItem[]) === canonical);
+    if (duplicado) return res.status(409).json({ error: "Ya existe un kit con los mismos componentes", kit: serialize(duplicado) });
     await db.update(sharedKits).set({
       codigo: payload.codigo,
       trabajo: payload.trabajo,
       equipo: payload.equipo,
-      fingerprint: payload.fingerprint,
+      fingerprint: canonical,
       items: JSON.stringify(payload.items),
     }).where(eq(sharedKits.id, req.params.id));
     const [row] = await db.select().from(sharedKits).where(eq(sharedKits.id, req.params.id)).limit(1);
