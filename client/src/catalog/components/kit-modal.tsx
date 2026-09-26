@@ -20,11 +20,13 @@ export function KitModal({
   rows,
   equipos,
   onClose,
+  onNotice,
 }: {
   kit: Kit | null;
   rows: Part[];
   equipos: string[];
   onClose: () => void;
+  onNotice?: (message: string) => void;
 }) {
   const [aviso, setAviso] = useState<string | null>(null);
   const [confirmar, setConfirmar] = useState(false);
@@ -207,7 +209,13 @@ export function KitModal({
           </div>
         </div>
       </dialog>
-      <KitEditDialog kit={editar ? kit : null} rows={rows} equipos={equipos} onClose={() => setEditar(false)} />
+      <KitEditDialog
+        kit={editar ? kit : null}
+        rows={rows}
+        equipos={equipos}
+        onClose={() => setEditar(false)}
+        onShared={(message) => { onNotice?.(message); setEditar(false); onClose(); }}
+      />
     </div>
   );
 }

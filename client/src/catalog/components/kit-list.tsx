@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { Package } from "lucide-react";
+import { Package, Search, X } from "lucide-react";
 import type { Kit } from "../lib/kit-store";
 import { KitCard } from "./kit-card";
 
@@ -16,6 +16,8 @@ export function KitList({
   onAddKit: (kit: Kit) => void;
 }) {
   const [equipo, setEquipo] = useState("TODOS LOS EQUIPOS");
+  const [busqueda, setBusqueda] = useState("");
+  const [origen, setOrigen] = useState<"todos" | "compartido" | "local">("todos");
 
   const equipos = useMemo(() => {
     const set = new Set<string>();
@@ -23,14 +25,29 @@ export function KitList({
     return ["TODOS LOS EQUIPOS", ...Array.from(set).sort()];
   }, [kits]);
 
-  const visibles = useMemo(
-    () => (equipo === "TODOS LOS EQUIPOS" ? kits : kits.filter((kit) => kit.equipo === equipo)),
-    [kits, equipo],
-  );
+  const visibles = useMemo(() => {
+    const needle = busqueda.trim().toLocaleLowerCase();
+    return kits.filter((kit) => {
+      if (equipo !== "TODOS LOS EQUIPOS" && kit.equipo !== equipo) return false;
+      if (origen !== "todos" && kit.origen !== origen) return false;
+      if (!needle) return true;
+      const contenido = [kit.codigo, kit.trabajo, kit.equipo, ...kit.items.flatMap((item) => [item.np, item.sap, item.descripcion])].join(" ").toLocaleLowerCase();
+      return contenido.includes(needle);
+    });
+  }, [kits, equipo, busqueda, origen]);
 
   return (
     <div className="px-4 pb-6">
       {kits.length > 0 && (
+        <>
+        <div className="mt-3 flex items-center gap-2 border border-line bg-surface px-3 focus-within:border-amber/60">
+          <Search className="size-4 shrink-0 text-muted" />
+          <input value={busqueda} onChange={(event) => setBusqueda(event.target.value)} aria-label="Buscar kits" placeholder="Buscar kit, N/P, SAP o equipo" className="num h-11 w-full bg-transparent text-sm placeholder:text-muted/70 focus:outline-none" />
+          {busqueda && <button type="button" onClick={() => setBusqueda("")} aria-label="Limpiar búsqueda de kits"><X className="size-4 text-muted" /></button>}
+        </div>
+        <div className="flex flex-wrap gap-1.5 pt-3">
+          {([['todos', 'Todos'], ['compartido', 'Compartidos'], ['local', 'Este dispositivo']] as const).map(([valor, etiqueta]) => <button key={valor} type="button" onClick={() => setOrigen(valor)} className={`rounded-full border px-2.5 py-1 font-display text-[11px] font-semibold tracking-wider uppercase transition-colors ${origen === valor ? "border-amber bg-amber text-ink" : "border-line bg-surface text-muted hover:border-amber/40 hover:text-text"}`}>{etiqueta}</button>)}
+        </div>
         <div className="flex flex-wrap gap-x-1.5 gap-y-1.5 py-3">
           {equipos.map((item) => {
             const active = item === equipo;
@@ -50,6 +67,7 @@ export function KitList({
             );
           })}
         </div>
+        </>
       )}
 
       <p className="label-xs pb-2">
@@ -67,7 +85,8 @@ export function KitList({
         </div>
       ) : visibles.length === 0 ? (
         <div className="border border-dashed border-line px-4 py-10 text-center">
-          <p className="text-sm text-text">Ningún kit para {equipo}.</p>
+          <p className="text-sm text-text">No hay kits con esos filtros.</p>
+          <button type="button" onClick={() => { setBusqueda(""); setOrigen("todos"); setEquipo("TODOS LOS EQUIPOS"); }} className="mt-3 text-xs font-bold uppercase tracking-wide text-amber">Limpiar filtros</button>
         </div>
       ) : (
         <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">

@@ -285,7 +285,7 @@ function Index() {
         equipos={equipos}
       />
       <PartModal part={detalle} onClose={() => setDetalle(null)} />
-      <KitModal kit={kitAbierto} rows={rows} equipos={equipos} onClose={() => setKitAbierto(null)} />
+      <KitModal kit={kitAbierto} rows={rows} equipos={equipos} onClose={() => setKitAbierto(null)} onNotice={setNotice} />
     </div>
   );
 }

@@ -18,16 +18,19 @@ export function KitEditDialog({
   rows: _rows,
   equipos,
   onClose,
+  onShared,
 }: {
   kit: Kit | null;
   rows: Part[];
   equipos: string[];
   onClose: () => void;
+  onShared?: (message: string) => void;
 }) {
   const [trabajo, setTrabajo] = useState("");
   const [equipo, setEquipo] = useState("");
   const [items, setItems] = useState<KitItem[]>([]);
   const [compartir, setCompartir] = useState(false);
+  const [confirmarCompartir, setConfirmarCompartir] = useState(false);
   const [aviso, setAviso] = useState<string | null>(null);
   const sharedActions = useSharedKitActions();
 
@@ -37,6 +40,7 @@ export function KitEditDialog({
     setEquipo(kit.equipo);
     setItems(kit.items.map((item) => ({ ...item })));
     setCompartir(kit.origen === "compartido");
+    setConfirmarCompartir(false);
     setAviso(null);
   }, [kit]);
 
@@ -62,6 +66,10 @@ export function KitEditDialog({
 
   const guardar = async () => {
     if (errores.length > 0) return;
+    if (kit.origen === "local" && compartir && !confirmarCompartir) {
+      setConfirmarCompartir(true);
+      return;
+    }
     const normalizedItems = items.map((item) => ({ ...item, qty: Math.trunc(item.qty) }));
     const normalizedEquipo = normalizeEquipo(equipo);
     const next = {
@@ -79,8 +87,10 @@ export function KitEditDialog({
         if (kit.origen === "compartido") {
           await sharedActions.update.mutateAsync(payload);
         } else {
-          await sharedActions.create.mutateAsync(payload);
+          const result = await sharedActions.create.mutateAsync(payload);
           deleteKit(kit.id);
+          const codigo = result.kit?.codigo ?? payload.codigo;
+          onShared?.(`Kit compartido correctamente como ${codigo}. Ya está disponible para todos los usuarios.`);
         }
         onClose();
       } catch (error) {
@@ -158,6 +168,14 @@ export function KitEditDialog({
 
           {errores.length > 0 && <ul className="mt-3 space-y-1">{errores.map((error) => <li key={error} className="flex items-start gap-1.5 text-[11px] text-warn"><AlertTriangle className="mt-0.5 size-3 shrink-0" /> {error}</li>)}</ul>}
           {aviso && <p className="mt-3 flex items-start gap-1.5 text-xs text-warn"><AlertTriangle className="mt-0.5 size-3.5 shrink-0" /> {aviso}</p>}
+          {confirmarCompartir && <div className="mt-3 border border-amber/50 bg-amber/10 px-3 py-3 text-xs text-text">
+            <p className="font-semibold">¿Compartir este kit con todos los usuarios?</p>
+            <p className="mt-1 text-muted">Se quitará la copia local y el kit quedará disponible para cargarlo y editarlo desde cualquier dispositivo.</p>
+            <div className="mt-3 flex gap-2">
+              <button type="button" onClick={() => setConfirmarCompartir(false)} className="h-9 flex-1 border border-line text-[11px] font-bold uppercase text-muted">Cancelar</button>
+              <button type="button" onClick={guardar} className="h-9 flex-1 bg-amber text-[11px] font-bold uppercase text-ink">Confirmar y compartir</button>
+            </div>
+          </div>}
         </div>
 
         <div className="border-t border-line px-3 pt-3 pb-6">
