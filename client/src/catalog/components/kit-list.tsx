@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { Package, Search, X } from "lucide-react";
+import { LayoutGrid, List, Package, Search, X } from "lucide-react";
 import { sortKits, type Kit } from "../lib/kit-store";
 import { KitCard } from "./kit-card";
 
@@ -18,6 +18,13 @@ export function KitList({
   const [equipo, setEquipo] = useState("TODOS LOS EQUIPOS");
   const [busqueda, setBusqueda] = useState("");
   const [origen, setOrigen] = useState<"todos" | "compartido" | "local">("todos");
+  const [compacta, setCompacta] = useState(() => {
+    try {
+      return localStorage.getItem("catalogo-kit-view") === "compacta";
+    } catch {
+      return false;
+    }
+  });
   const ordenados = useMemo(() => sortKits(kits), [kits]);
 
   const equipos = useMemo(() => {
@@ -71,9 +78,25 @@ export function KitList({
         </>
       )}
 
-      <p className="label-xs pb-2">
-        {visibles.length} de {ordenados.length} {ordenados.length === 1 ? "kit" : "kits"}
-      </p>
+      <div className="flex items-center justify-between gap-3 pb-2">
+        <p className="label-xs">
+          {visibles.length} de {ordenados.length} {ordenados.length === 1 ? "kit" : "kits"}
+        </p>
+        <button
+          type="button"
+          aria-pressed={compacta}
+          onClick={() => {
+            const siguiente = !compacta;
+            setCompacta(siguiente);
+            try { localStorage.setItem("catalogo-kit-view", siguiente ? "compacta" : "comoda"); } catch { /* modo privado */ }
+          }}
+          className={`flex items-center gap-1.5 rounded border px-2.5 py-1.5 font-display text-[10px] font-semibold tracking-wide transition ${compacta ? "border-amber bg-amber/15 text-amber" : "border-line bg-surface text-muted hover:border-amber/50 hover:text-text"}`}
+          title={compacta ? "Cambiar a vista cómoda" : "Mostrar más kits con vista compacta"}
+        >
+          {compacta ? <List className="size-3.5" /> : <LayoutGrid className="size-3.5" />}
+          {compacta ? "Vista cómoda" : "Vista compacta"}
+        </button>
+      </div>
 
       {ordenados.length === 0 ? (
         <div className="border border-dashed border-line px-4 py-10 text-center">
@@ -90,9 +113,9 @@ export function KitList({
           <button type="button" onClick={() => { setBusqueda(""); setOrigen("todos"); setEquipo("TODOS LOS EQUIPOS"); }} className="mt-3 text-xs font-bold tracking-wide text-amber">Limpiar filtros</button>
         </div>
       ) : (
-        <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+        <div className={compacta ? "grid grid-cols-2 gap-1.5 sm:grid-cols-3 lg:grid-cols-4" : "grid grid-cols-1 gap-2 sm:grid-cols-2"}>
           {visibles.map((kit) => (
-            <KitCard key={kit.id} kit={kit} onOpen={onOpenKit} onAdd={onAddKit} />
+            <KitCard key={kit.id} kit={kit} onOpen={onOpenKit} onAdd={onAddKit} compact={compacta} />
           ))}
         </div>
       )}
