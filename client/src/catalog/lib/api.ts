@@ -1,5 +1,6 @@
 import type { CatalogData } from "./offline-cache";
 import type { Kit } from "./kit-store";
+import type { PerneriaSnapshot } from "../../../../server/perneria-store";
 
 export type CatalogResponse = CatalogData & { synced?: boolean; error?: string | null };
 export type SharedKitsResponse = { kits: Kit[]; available: boolean };
@@ -30,6 +31,10 @@ export const api = {
     refresh: () => request<CatalogResponse>("/api/catalog/refresh", { method: "POST" }),
   },
   ping: () => request<{ ok: true }>("/api/ping"),
+  perneria: {
+    list: () => request<PerneriaSnapshot>("/api/perneria"),
+    refresh: () => request<PerneriaSnapshot>("/api/perneria/refresh", { method: "POST" }),
+  },
   sharedKits: {
     list: () => request<SharedKitsResponse>("/api/shared-kits"),
     create: (kit: Omit<Kit, "origen">) => request<{ kit: Kit }>("/api/shared-kits", { method: "POST", body: JSON.stringify(kit) }),

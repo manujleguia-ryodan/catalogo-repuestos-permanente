@@ -8,6 +8,7 @@ import { OrderFab, OrderSheet } from "../components/order-sheet";
 import { HomePanel } from "../components/home-panel";
 import { KitList } from "../components/kit-list";
 import { KitModal } from "../components/kit-modal";
+import { PerneriaPanel } from "../components/perneria-panel";
 import { useCatalog, useRefreshCatalog } from "../queries/catalog";
 import { useOnline } from "../hooks/use-online";
 import { normalize, timeAgo, writeLocalCatalog, type Part } from "../lib/offline-cache";
@@ -16,6 +17,7 @@ import { buildOrder } from "../lib/order-text";
 import { reconcileLocalKitCodes, sortKits, useKits, type Kit } from "../lib/kit-store";
 import { applyKitToOrder } from "../lib/kit-order";
 import { useSharedKits } from "../queries/shared-kits";
+import { usePerneria } from "../queries/perneria";
 
 function Index() {
   const [term, setTerm] = useState("");
@@ -23,7 +25,7 @@ function Index() {
   const [notice, setNotice] = useState<string | null>(null);
   const [resumenAbierto, setResumenAbierto] = useState(false);
   const [detalle, setDetalle] = useState<Part | null>(null);
-  const [tab, setTab] = useState<"catalogo" | "kits">("catalogo");
+  const [tab, setTab] = useState<"catalogo" | "kits" | "perneria">("catalogo");
   const [kitAbierto, setKitAbierto] = useState<Kit | null>(null);
 
   const online = useOnline();
@@ -32,6 +34,7 @@ function Index() {
   const cantidades = useQuantities();
   const kits = useKits();
   const shared = useSharedKits();
+  const perneria = usePerneria();
   const todosLosKits = useMemo(() => sortKits([...(shared.data?.kits ?? []), ...kits]), [shared.data?.kits, kits]);
 
   useEffect(() => {
@@ -134,6 +137,7 @@ function Index() {
               [
                 ["catalogo", "Catálogo"],
                 ["kits", `Kits de repuestos${kits.length > 0 ? ` (${kits.length})` : ""}`],
+                ["perneria", "Pernería"],
               ] as const
             ).map(([valor, etiqueta]) => {
               const active = tab === valor;
@@ -200,6 +204,8 @@ function Index() {
       <main className="mx-auto w-full max-w-[780px] flex-1 overflow-y-auto overscroll-contain px-0 pb-28">
         {tab === "kits" ? (
         <KitList kits={todosLosKits} onOpenKit={setKitAbierto} onAddKit={agregarKit} />
+        ) : tab === "perneria" ? (
+        <PerneriaPanel data={perneria.data} isLoading={perneria.isLoading} />
         ) : (
         <>
         <div className="flex items-baseline justify-between px-4 py-3">

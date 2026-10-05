@@ -10,6 +10,7 @@ import { createContext } from "./context";
 import { serveStatic, setupVite } from "./vite";
 import { registerCatalogRoutes } from "../catalog-routes";
 import { registerSharedKitRoutes } from "../shared-kit-routes";
+import { registerPerneriaRoutes } from "../perneria-routes";
 
 function isPortAvailable(port: number): Promise<boolean> {
   return new Promise(resolve => {
@@ -40,6 +41,7 @@ async function startServer() {
   registerOAuthRoutes(app);
   registerCatalogRoutes(app);
   registerSharedKitRoutes(app);
+  registerPerneriaRoutes(app);
   // tRPC API
   app.use(
     "/api/trpc",
