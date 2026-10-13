@@ -9,6 +9,7 @@ import { HomePanel } from "../components/home-panel";
 import { KitList } from "../components/kit-list";
 import { KitModal } from "../components/kit-modal";
 import { PerneriaPanel } from "../components/perneria-panel";
+import { SheetAccessDialog } from "../components/sheet-access-dialog";
 import { useCatalog, useRefreshCatalog } from "../queries/catalog";
 import { useOnline } from "../hooks/use-online";
 import { normalize, timeAgo, writeLocalCatalog, type Part } from "../lib/offline-cache";
@@ -27,6 +28,7 @@ function Index() {
   const [detalle, setDetalle] = useState<Part | null>(null);
   const [tab, setTab] = useState<"catalogo" | "kits" | "perneria">("catalogo");
   const [kitAbierto, setKitAbierto] = useState<Kit | null>(null);
+  const [sheetAccessOpen, setSheetAccessOpen] = useState(false);
 
   const online = useOnline();
   const catalog = useCatalog();
@@ -271,14 +273,13 @@ function Index() {
           </p>
           <div className="flex items-center gap-4">
             {catalog.data?.sheetUrl && (
-              <a
-                href={catalog.data.sheetUrl}
-                target="_blank"
-                rel="noreferrer"
+              <button
+                type="button"
+                onClick={() => setSheetAccessOpen(true)}
                 className="flex items-center gap-1.5 text-muted hover:text-amber"
               >
                 <ExternalLink className="size-3.5" /> Abrir hoja de cálculo
-              </a>
+              </button>
             )}
           </div>
         </footer>
@@ -296,6 +297,13 @@ function Index() {
       />
       <PartModal part={detalle} onClose={() => setDetalle(null)} />
       <KitModal kit={kitAbierto} rows={rows} equipos={equipos} onClose={() => setKitAbierto(null)} onNotice={setNotice} />
+      {catalog.data?.sheetUrl && (
+        <SheetAccessDialog
+          open={sheetAccessOpen}
+          url={catalog.data.sheetUrl}
+          onClose={() => setSheetAccessOpen(false)}
+        />
+      )}
     </div>
   );
 }
