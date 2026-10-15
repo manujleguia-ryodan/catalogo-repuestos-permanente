@@ -65,9 +65,13 @@ export function KitModal({
 
   /** Copia SAP y cantidad en la misma fila: SAP | vacío | Ctd.nece. */
   const copiarSap = async () => {
-    const { texto, copiados, omitidos } = itemsToSapText(kit.items);
+    // Tomamos una instantánea para que un cambio rápido de kit nunca mezcle
+    // componentes de la ficha anterior con la que el usuario está viendo.
+    const kitCodigo = kit.codigo;
+    const items = kit.items.map(({ sap, qty }) => ({ sap, qty }));
+    const { texto, copiados, omitidos } = itemsToSapText(items);
     if (copiados === 0) {
-      setAviso("Ningún repuesto de este kit tiene código SAP.");
+      setAviso(`${kitCodigo}: ningún repuesto tiene código SAP.`);
       return;
     }
     try {
@@ -77,8 +81,8 @@ export function KitModal({
     }
     setAviso(
       omitidos > 0
-        ? `Copiado para SAP: pega desde Componente; la cantidad irá en el segundo tab. ${omitidos} sin SAP quedaron fuera.`
-        : "Copiado para SAP: pega desde Componente; la cantidad irá en el segundo tab.",
+        ? `${kitCodigo}: copiado para SAP; pega desde Componente. La cantidad irá en el segundo tab. ${omitidos} sin SAP quedaron fuera.`
+        : `${kitCodigo}: copiado para SAP; pega desde Componente. La cantidad irá en el segundo tab.`,
     );
   };
 

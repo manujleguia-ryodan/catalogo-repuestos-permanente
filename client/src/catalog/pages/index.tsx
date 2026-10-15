@@ -296,7 +296,7 @@ function Index() {
         equipos={equipos}
       />
       <PartModal part={detalle} onClose={() => setDetalle(null)} />
-      <KitModal kit={kitAbierto} rows={rows} equipos={equipos} onClose={() => setKitAbierto(null)} onNotice={setNotice} />
+      <KitModal key={kitAbierto?.id ?? "sin-kit"} kit={kitAbierto} rows={rows} equipos={equipos} onClose={() => setKitAbierto(null)} onNotice={setNotice} />
       {catalog.data?.sheetUrl && (
         <SheetAccessDialog
           open={sheetAccessOpen}

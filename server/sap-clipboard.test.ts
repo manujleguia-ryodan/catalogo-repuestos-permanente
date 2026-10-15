@@ -63,6 +63,14 @@ describe("formato de portapapeles SAP", () => {
     });
   });
 
+  it("mantiene separados los datos de kits distintos al copiar consecutivamente", () => {
+    const kitA = [{ sap: "KIT-A-SAP", qty: 2 }];
+    const kitB = [{ sap: "KIT-B-SAP", qty: 7 }];
+
+    expect(itemsToSapText(kitA).texto).toBe("KIT-A-SAP\t\t2");
+    expect(itemsToSapText(kitB).texto).toBe("KIT-B-SAP\t\t7");
+  });
+
   it("separa Componentes y Ctd.nece para pegar desde la celda con cursor", () => {
     const items = [
       { sap: "3007141", qty: 2 },
